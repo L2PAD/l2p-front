@@ -96,7 +96,7 @@ const mobileLinks = [
         href:'/waitinglist'
     },
     {
-        title:'NN Info',
+        title:'L2P Info',
         href:'/info'
     },
 ]
@@ -222,7 +222,7 @@ const Nav = ({userData}) => {
             </div>
             <div className={styles.infoLink}>
                 <Link href={'/info'}>
-                    NN info
+                    L2P info
                 </Link>
             </div>
             <div className={styles.input}>
