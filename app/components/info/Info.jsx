@@ -118,7 +118,7 @@ export default function Info({data}) {
                 </p>
                 <b>
                 On the other hand, L2Pad provides an opportunity for aspiring entrepreneurs to receive the help and support they need
-It includes:
+                It includes:
                 </b>
                 <ul>
                     <li>Funding</li>

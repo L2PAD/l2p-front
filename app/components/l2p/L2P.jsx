@@ -1,5 +1,7 @@
 import { useRef,useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
 import getUserData from '../../utils/getUserData'
 import l2pSocial from '../../assets/icons/l2p-social'
 import SquareBtn from '../UI/buttons/SquareLightBtn'
@@ -8,9 +10,8 @@ import stepsTextTwo from '../../assets/components/l2pText/stepsTextTwo'
 import stepsTextThree from '../../assets/components/l2pText/stepsTextThree'
 import L2PText from '../../assets/components/l2pText/L2PText'
 import sliceAddress from '../../utils/sliceAddress'
-import Image from 'next/image'
-import Link from 'next/link'
 import l2pLogo from '../../assets/icons/l2p-logo.svg'
+import l2pVideo from '../../assets/video/l2p.gif'
 import loader from '../../utils/loader'
 import styles from './l2p.module.scss'
 
@@ -23,19 +24,24 @@ const L2P = ({socialLinks}) => {
     useEffect(() => {
         const user = getUserData()
         setUserData(user)
-        setWalletAddress(window.ethereum.selectedAddress)
-        videoRef.current.play()
+        setWalletAddress(window?.ethereum?.selectedAddress)
+        // videoRef.current.play()
     }, [videoRef]);
   
   return (
     <div className={styles.wrapper}>
-        <video
+        <Image
+        className={styles.background}
+        src={l2pVideo}
+        alt='l2p'
+        />
+        {/* <video
         muted
         ref={videoRef}
         loop
         >
             <source src={loader('/1.webm')} type='video/webm'/>
-        </video>
+        </video> */}
         <div className={styles.body}>
             <header>
                 <Link className={styles.logo} href={'/'}>
