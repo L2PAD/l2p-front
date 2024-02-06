@@ -4,7 +4,7 @@
 .wrapper{
     max-width: 1350px;
     width: 100%;
-    margin: 32px auto 100px;
+    margin: 32px auto 40px;
     display: flex;
     justify-content: center;
     gap: 16px;
@@ -15,5 +15,8 @@
 }
 .projectStats{
     padding: 0px 15px;
+    margin-bottom: 100px;
+}
+.closed{
     margin-bottom: 100px;
 }
