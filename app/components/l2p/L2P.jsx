@@ -12,7 +12,6 @@ import L2PText from '../../assets/components/l2pText/L2PText'
 import sliceAddress from '../../utils/sliceAddress'
 import l2pLogo from '../../assets/icons/l2p-logo.svg'
 import l2pVideo from '../../assets/video/l2p.gif'
-import loader from '../../utils/loader'
 import styles from './l2p.module.scss'
 
 const L2P = ({socialLinks}) => {
@@ -30,11 +29,14 @@ const L2P = ({socialLinks}) => {
   
   return (
     <div className={styles.wrapper}>
-        <Image
-        className={styles.background}
-        src={l2pVideo}
-        alt='l2p'
-        />
+        <div className={styles.bgWrapper}>
+            <Image
+            className={styles.background}
+            src={l2pVideo}
+            alt='l2p'
+            />
+            <div className={styles.overlay}></div>
+        </div>
         {/* <video
         muted
         ref={videoRef}
