@@ -1,0 +1,55 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 585px;
+  width: 100%;
+  margin: 0 auto 40px;
+}
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  @media (max-width: 620px) {
+    justify-content: center;
+  }
+}
+.btns button:first-child {
+  @media (max-width: 620px) {
+    max-width: 75vw !important;
+  }
+}
+.likeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 48px;
+  height: 48px;
+  background: #fff7f5;
+  box-shadow: 4px 4px 10px #eeeeee;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: -4px -4px 4px 0px rgba(19, 18, 18, 0.25) inset,
+    4px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+
+  &:hover {
+    box-shadow: -3px -3px 4px 0px rgba(14, 13, 13, 0.25) inset,
+      4px 4px 4px 0px rgba(169, 169, 169, 0.25) inset;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+  @media (max-width: 550px) {
+    min-width: 48px;
+  }
+}
+.subTitle {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  color: #0d0f2b;
+  margin-bottom: 24px;
+}

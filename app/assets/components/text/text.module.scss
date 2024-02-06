@@ -1,0 +1,15 @@
+.text {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 38px;
+  text-align: center;
+  color: #0d0f2b;
+  margin: 15px 0;
+  @media (max-width: 540px) {
+    font-size: 18px;
+    max-width: 80vw;
+    line-height: 140%;
+  }
+}

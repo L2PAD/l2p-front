@@ -1,0 +1,37 @@
+@import "../../styles/vars.scss";
+
+.btn {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  line-height: 19px;
+  opacity: 1;
+  transition: all 0.22s ease;
+  background: #ff507d;
+  padding: 10px 18px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 50px;
+  background: var(--Deep-orange, #d74a2d);
+  box-shadow: -4px -4px 4px 0px rgba(19, 18, 18, 0.25) inset,
+    4px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.btn:hover {
+  background: var(--Deep-orange, #bc3b22);
+}
+.link {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  line-height: 19px;
+  opacity: 1;
+  transition: all 0.22s ease;
+  padding: 8px 18px;
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  background: var(--Deep-orange, #d74a2d);
+}
+.link:hover {
+  background: var(--Deep-orange, #bc3b22);
+}

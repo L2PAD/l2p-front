@@ -1,0 +1,65 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #f5f5f5;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 135%;
+  @media (max-width: 460px) {
+    font-size: 22px;
+    line-height: 185%;
+  }
+  button {
+    max-width: fit-content;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 28px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    @media (max-width: 460px) {
+      margin-top: 2px;
+      font-size: 22px;
+    }
+  }
+  button[id="link"] {
+    font-style: italic;
+  }
+  button[data-custom="selected"] {
+    background: #f5f5f5;
+    color: #131316;
+    transition: all 0.3s ease;
+  }
+  button[data-custom="unselected"] {
+    background: transparent;
+    color: #f5f5f5;
+    border-radius: 50px;
+    border: 1px solid #f5f5f5;
+    transition: all 0.3s ease;
+    &:hover {
+      color: #d74a2d;
+      border: 1px solid #d74a2d;
+    }
+  }
+  span[data-custom="close-btn"] {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      color: #d74a2d;
+      button {
+        color: #131316;
+        background: #d74a2d;
+        border: 1px solid transparent;
+      }
+    }
+    button {
+      background: #f5f5f5;
+      color: #131316;
+      &:hover {
+        color: #131316;
+        background: #d74a2d;
+        border: 1px solid transparent;
+      }
+    }
+  }
+}

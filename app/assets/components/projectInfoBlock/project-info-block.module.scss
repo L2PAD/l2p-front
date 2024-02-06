@@ -1,0 +1,58 @@
+.body {
+  @media (max-width: 550px) {
+    padding: 0px 12px;
+  }
+}
+.img {
+  img {
+    object-fit: cover;
+    max-width: 930px;
+    max-height: 380px;
+    height: auto;
+    border-radius: 16px;
+    @media (max-width:1000px) {
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
+  margin-bottom: 14px;
+}
+.text {
+  p {
+    max-width: 580px;
+    text-align: justify;
+    margin: 0;
+  }
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #070b35;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 15px 0;
+  }
+  @media (max-width: 420px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+.video {
+  div {
+    width: 580px !important;
+    @media (max-width: 600px) {
+      width: 95vw !important;
+      height: auto !important;
+    }
+  }
+
+  margin-bottom: 20px;
+  video {
+    max-width: 580px;
+  }
+}
+
+

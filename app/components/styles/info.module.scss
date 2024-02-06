@@ -1,0 +1,167 @@
+.navWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.l2pLogo {
+  position: absolute;
+  left: -260px;
+  top: 95px;
+  @media (max-width:1060px) {
+    display: none;
+  }
+}
+.joinUs {
+  max-width: 900px;
+  margin: 16px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo img {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.nav {
+  margin: 142px 0px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  @media (max-width: 620px) {
+    margin: 12px 0px 40px;
+  }
+  @media (max-width:540px) {
+    margin: 12px 0px 20px;
+    gap: 16px;
+  }
+}
+.nav a {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 19px;
+  color: #131316d6;
+
+  transition: opacity 0.3s ease;
+  &:hover {
+    font-weight: 700;
+    color: #131316;
+  }
+
+  @media (max-width:540px) {
+    font-size: 20px;
+  }
+  @media (max-width:380px) {
+    font-size: 18px;
+  }
+}
+.ventures img {
+  @media (max-width: 620px) {
+    max-width: 230px;
+    max-height: 78px;
+  }
+}
+.text {
+  margin: 24px 0 50px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 21px;
+  color: #0d0f2b;
+  text-align: center;
+  @media (max-width: 620px) {
+    padding: 0px 12px;
+  }
+  @media (max-width:450px) {
+    font-size: 20px;
+  }
+}
+.about {
+  margin: 100px 0;
+  @media (max-width: 620px) {
+    margin: 64px 0;
+    padding: 0px 24px;
+  }
+  @media (max-width: 620px) {
+    padding: 0px 12px;
+  }
+}
+.aboutText {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.aboutText li {
+  display: flex;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.aboutText li::before {
+  content: "";
+  display: block;
+  background: black;
+  width: 2.8px;
+  height: 3.2px;
+  margin: 0px 10px;
+  border-radius: 100%;
+}
+.features {
+  margin-top: 100px;
+  @media (max-width: 620px) {
+    margin: 64px 0;
+    padding: 0px 4px;
+  }
+}
+.featuresColums {
+  max-width: 900px;
+  margin: 24px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @media (max-width: 835px) {
+    gap: 15px;
+  }
+}
+.featuresColum {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  p {
+    margin: 8px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align:left ;
+    color: #0d0f2b;
+  }
+  b {
+    font-size: 18px;
+  }
+}
+
+.partners {
+  margin: 108px 0;
+  @media (max-width: 620px) {
+    margin: 64px 0;
+  }
+}
+.risks {
+  margin: 100px 0;
+  @media (max-width: 620px) {
+    margin: 64px 0;
+  }
+}
+.aboutInfo {
+  h4 {
+    margin-bottom: 12px;
+  }
+}
+.about {
+  margin-top: 40px;
+}

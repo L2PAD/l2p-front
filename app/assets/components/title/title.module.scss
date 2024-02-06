@@ -1,0 +1,23 @@
+.title {
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 99.9%;
+  color: #0d0f2b;
+  text-align: center;
+  @media (max-width: 540px) {
+    font-size: 46px;
+  }
+
+}
+.mainWrapper{
+  position: relative;
+  img{
+    position: absolute;
+    bottom: -34px;
+    right: 70px;
+    @media (max-width:500px) {
+      width: 60%;
+      right: 40px;
+    }
+  }
+}

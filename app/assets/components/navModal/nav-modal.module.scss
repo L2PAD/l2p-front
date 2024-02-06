@@ -1,0 +1,61 @@
+.body {
+  max-width: 480px;
+  min-width: 480px;
+  position: absolute;
+  top: 30px;
+  background: white;
+  box-shadow: 4px 4px 25px #eeeeee;
+  display: flex;
+  flex-wrap: wrap;
+  transition: all 0.2s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 10;
+  @media (max-width:1221px) {
+    min-width: unset;
+  }
+  @media (max-width:541px) {
+    top: 25px;
+    left: -12px;
+  }
+}
+.link {
+  position: relative;
+  width: 240px;
+  padding: 14.5px;
+  display: flex;
+  gap: 10px;
+  background: white;
+  transition: background 0.3s ease;
+  &:hover{
+    background: #73809424;
+  }
+}
+.line {
+  position: absolute;
+  top: 28px;
+  left: 49.7%;
+  background: rgba(83, 98, 124, 0.14);
+  width: 1px;
+  height: 155px;
+  @media (max-width:1221px) {
+    display: none;
+  }
+}
+.description {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #738094;
+}
+.info {
+  max-width: 160px;
+  width: 100%;
+}
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #0d0f2b;
+  margin-bottom: 4px;
+}
