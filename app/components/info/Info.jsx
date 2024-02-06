@@ -70,10 +70,6 @@ export default function Info({data}) {
     <>
         <div className={styles.body}>
         <div className={styles.joinUs}>
-            <div className={styles.navWrapper}>
-                <Image 
-                className={styles.l2pLogo}
-                src={logo} alt='l2pad'/>
                 <nav className={styles.nav}>
                     {links.map((link,index) => {
                         return (
@@ -83,7 +79,6 @@ export default function Info({data}) {
                         )
                     })}
                 </nav>
-            </div>
             <div className={styles.text}>
             Learn from others, share your work, and extend your tool set with a diverse group of web3 founders, community managers, growth hackers, marketers, content writers and many more from around            </div>
             <MainBtn text={'Join us'} handler={modalHandler}/>
