@@ -8,6 +8,7 @@
   background: #fff;
   box-shadow: 4px 4px 12px 1px #514d4d2c;
   transition: all 0.3s ease;
+  z-index: 10000;
   @media (max-width:541px) {
     top: 28px;
   }
