@@ -43,8 +43,8 @@ export default function BecomeParticipant({project,modalHandler}) {
         <div className={styles.btns}>
             <SquareBtn 
             className='participate'
-            handler={() => dispatch(toggleModal('offers'))} 
-            // handler={() => router.push(`/participate/${project.path}/${project._id}`)} 
+            // handler={() => dispatch(toggleModal('offers'))} 
+            handler={() => router.push(`/participate/${project.path}/${project._id}`)} 
             width='380' 
             text={'Participate'} />
             <button onClick={addProject} type={'button'} className={styles.likeBtn}>
