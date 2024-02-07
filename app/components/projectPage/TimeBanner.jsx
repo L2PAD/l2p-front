@@ -3,9 +3,9 @@ import SquareBtn from '../UI/buttons/SquareLightBtn'
 import useTimer from '../../hooks/useTimer'
 import styles from '../styles/time-banner.module.scss'
 
-const TimeBanner = ({steps,date,time}) => {
-    const isAuth = useSelector((state) => state.auth.userData?.isAuth)
+const TimeBanner = ({steps,date,time,currentStep,changeStep}) => {
     const {days,hours,minutes,seconds} = useTimer(date,time)
+    const isAuth = useSelector((state) => state.auth.userData?.isAuth)
  
   return (
     <div className={styles.wrapper}>
@@ -28,12 +28,19 @@ const TimeBanner = ({steps,date,time}) => {
             {
                 steps.map((step,index) => {
                     return (
-                        <div 
-                        className={styles.step}
+                        <button 
+                        onClick={() => changeStep(index + 1)}
+                        className={
+                            currentStep === (index + 1)
+                            ?
+                            styles.step
+                            :
+                            styles.step + ' ' + styles.disabled
+                        }
                         key={index}
                         >
-                            {step}
-                        </div>
+                            {step?.name || step}
+                        </button>
                     )
                 })
             }

@@ -23,8 +23,7 @@ export default function donates({projects}) {
     `
     <div class="center-text">
       <p>
-      Investing at early rounds of investing rounds might well be quite beneficial as you may be looking at the next gem or a project which will change the industry while the cost of entrance in such a project remains low.  Find here only the best projects powered by zkSync solution with great potential and invest in them.
-      </p>
+      Investing at early rounds of investing rounds might well be quite beneficial as you may be looking at the next gem or a project which will change the industry while the cost of entrance in such a project remains low. Find here only the best projects powered by Blast solution with great potential and invest in them.      </p>
     </div>
 
     `

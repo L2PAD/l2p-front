@@ -25,14 +25,14 @@
 .nav a {
   font-family: "Raleway";
   font-style: normal;
-  font-weight: 600;
-  font-size: 28px;
+  font-weight: 800;
+  font-size: 32px;
   line-height: 19px;
-  color: #131316d6;
+  color: black;
 
   transition: opacity 0.3s ease;
   &:hover {
-    font-weight: 700;
+    font-weight: 800;
     color: #131316;
   }
 
@@ -53,11 +53,10 @@
   margin: 24px 0 50px;
   font-family: "Raleway";
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 22px;
   line-height: 21px;
   color: #0d0f2b;
-  text-align: center;
   @media (max-width: 620px) {
     padding: 0px 12px;
   }
@@ -78,7 +77,7 @@
 .aboutText {
   max-width: 900px;
   margin: 0 auto;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .aboutText li {
@@ -123,7 +122,7 @@
   p {
     margin: 8px 0;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 16px;
     text-align:left ;
     color: #0d0f2b;

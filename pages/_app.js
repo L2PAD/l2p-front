@@ -1,10 +1,10 @@
-import '../styles/global.css'
-import '../styles/calendar.css'
-import 'react-quill/dist/quill.snow.css'
 import { Provider } from 'react-redux'
 import { store } from '../app/store/store'
 import { wagmiClient } from '../app/config/provider'
 import {WagmiConfig } from "wagmi";
+import '../styles/global.css'
+import '../styles/calendar.css'
+import 'react-quill/dist/quill.snow.css'
 
 function MyApp({ Component, pageProps }) {
 
@@ -17,7 +17,6 @@ function MyApp({ Component, pageProps }) {
     </WagmiConfig>
     </>
   )
-
 }
 
 export default MyApp

@@ -47,7 +47,7 @@ export default function FourthStep({steps,stepHandler,userData}) {
         <SquareBtn 
         handler={confirmAuthHandler}
         btnId='none'
-        text='Login to No Name' 
+        text='Login to L2PAD' 
         width='400' 
         type='red'/>
       </div>

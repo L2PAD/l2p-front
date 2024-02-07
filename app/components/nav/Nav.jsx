@@ -1,6 +1,11 @@
 import { useState , useMemo , useEffect} from 'react';
+import { useDispatch , useSelector} from 'react-redux'
+import { useWeb3Modal } from "@web3modal/react";
+import { useAccount} from 'wagmi'
 import Link from 'next/link';
 import Image from 'next/image';
+import {setUserData} from '../../store/slices/authSlice' 
+import { closeModal, closeModalWithoutBlock, openModal, toggleModal ,toggleModalWithoutBlock} from '../../store/slices/modalsSlice';
 import logo from '../../assets/icons/l2pad-logo.png'
 import cartSvg from '../../assets/icons/cart.svg'
 import PinkBtn from '../UI/buttons/PinkBtn';
@@ -9,20 +14,14 @@ import Burger from '../../assets/components/burger/Burger';
 import MobileNav from '../../assets/components/mobileNav/MobileNav';
 import blockScroll from '../../utils/blockScroll';
 import UserSettings from '../userSettings/UserSettings'
-import { useWeb3Modal } from "@web3modal/react";
-import { useDispatch , useSelector} from 'react-redux'
-import { useAccount} from 'wagmi'
 import useCart from '../../hooks/useCart';
-import {setUserData} from '../../store/slices/authSlice' 
 import useWallet from '../../hooks/useWallet';
 import useAuth from '../../hooks/useAuth';
-import { closeModal, closeModalWithoutBlock, openModal, toggleModal ,toggleModalWithoutBlock} from '../../store/slices/modalsSlice';
 import SearchBar from '../../assets/components/searchBar/SearchBar';
 import NavModal from '../../assets/components/navModal/NavModal';
 import CartModal from '../../assets/components/cartModal/CartModal'
 import LoaderCustom from '../../assets/components/loader/Loader';
 import SuccessWalletConnect from '../../assets/components/SuccessWalletConnect/SuccessWalletConnect';
-import AccessToNonameDao from '../../assets/components/AccessNonameDao/AccessToNonameDao';
 import RwaCreditModal from '../../assets/components/rwaCreditNavModal/RwaCreditModal'
 import styles from '../layout/styles/nav.module.scss'
 

@@ -29,8 +29,7 @@ const pageInfo = {
   `
   <div className='center-text'>
     <p>
-    Various crypto projects powered by zkSync for you to choose to invest in. We provide opportunities to invest in projects we have checked, reviewed and approved to ensure safety of your investments and guarantee that you will not lose what you have invested. Only the best zkSync projects. 
-    </p>
+    Various crypto projects powered by Blast for you to choose to invest in. We provide opportunities to invest in projects we have checked, reviewed and approved to ensure safety of your investments and guarantee that you will not lose what you have invested. Only the best Blast projects.    </p>
   </div>
   `
 }

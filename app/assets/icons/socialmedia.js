@@ -3,7 +3,7 @@ import facebook from './facebook.svg'
 import instagram from './instagram.svg'
 import telegram from './telegram.svg'
 import tikTok from './tikTok.svg'
-import twitter from './twitter.svg'
+import twitter from './X.svg'
 import medium from './medium.svg'
 
 export default {

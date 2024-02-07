@@ -29,7 +29,7 @@
 .text {
   color: #0d0f2b;
   text-align: center;
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 700;
 }
 .label {
@@ -52,4 +52,10 @@
 .stakingLabel .description{
   max-width: 720px;
   font-size: 18px;
+}
+.rwa .description{
+  max-width: 920px;
+  @media (max-width:450px) {
+    margin-bottom: 50px;
+  }
 }

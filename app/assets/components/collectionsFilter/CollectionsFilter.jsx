@@ -10,7 +10,7 @@ const filtersInitialState = [
         isSelect:true,
     },
     {
-        name:'No name key',
+        name:'L2PAD key',
         filterValue:'nonamekey',
         isSelect:false,
     },

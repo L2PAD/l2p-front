@@ -341,10 +341,18 @@ export default function UserSettings({disconnect,user}) {
                 </div>
         <div className={styles.row}>
          <span className={styles.key}>
+          Points:
+         </span>
+         <span className={styles.value}>
+			    0
+         </span>
+        </div>
+        <div className={styles.row}>
+         <span className={styles.key}>
            Partners:
          </span>
          <span className={styles.value}>
-			 {NFT_partners}
+			    {NFT_partners}
          </span>
         </div>
         <div className={styles.row}>
@@ -427,8 +435,8 @@ export default function UserSettings({disconnect,user}) {
            <button 
             onClick={() => router.push('/academy')}
            className={styles.btn + ' ' + styles.academy}>
-              <Image alt={'NN Academy'} src={bookSvg}/>
-              <span>NN Academy</span>
+              <Image alt={'L2P Academy'} src={bookSvg}/>
+              <span>L2P Academy</span>
            </button>
         </div>
         <div className={styles.row}>
@@ -482,7 +490,7 @@ export default function UserSettings({disconnect,user}) {
           ?
           <div className={styles.nftError}>
             <Image src={icons.nftError} alt='Buy nft'/>
-            <span>To gain a full access buy NONAME NFT!</span>
+            <span>To gain a full access buy L2PAD NFT!</span>
           </div>
           :
           <></>

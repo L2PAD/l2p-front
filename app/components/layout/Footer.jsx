@@ -20,7 +20,7 @@ const Footer = ({footerData}) => {
         <footer id='footer-block' className={styles.footer}>
             <div className={styles.container}>
                 <div className={styles.textLight}>
-                   Noname.io ©{new Date().getFullYear()}
+                    L2PAD © {new Date().getFullYear()}
                 </div>
                 <ul className={styles.links}>
                    <li id='toggle-modal'>

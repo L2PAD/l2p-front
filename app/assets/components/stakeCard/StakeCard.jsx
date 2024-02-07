@@ -17,7 +17,7 @@ export default function StakeCard({value,nfts,handler,confirmNftStake}) {
                 Enter the desired quantity of NFTs
               </div>
             </div>
-            <span>{nfts} Noname NFT key</span>
+            <span>{nfts} L2PD NFT key</span>
         </div>
         <div className={styles.valueBlock}>
             <input

@@ -19,7 +19,7 @@ import parseDate from '../../utils/parseDate'
 import changeDateType from '../../utils/changeDateType'
 import styles from '../styles/ido-details.module.scss'
 
-const steps = [
+const stepsInitital = [
     'Staking',
     'Purchase',
     'Distribution',
@@ -33,10 +33,12 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
     const [fundedValue,setFundedValue] = useState(0)
     const [myInvestValue,setMyInvestValue] = useState(0)
     const [currentGoal,setCurrentGoal] = useState(0)
+    const [steps,setSteps] = useState(() => stepsInitital)
+    const [currentStep,setCurrentStep] = useState(1)
     const router = useRouter()
 
     const dispatch = useDispatch()
-    console.log(project)
+  
     const addProject = async () => {
         if(!userData.isAuth){
             dispatch(toggleModal('wallet'))
@@ -53,6 +55,20 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
             modalHandler(null,true)
         }
     }
+
+      
+    const changeStep = (stepNumber) => {
+        const stepsNumbers = {
+          1:'staking-step',
+          2:'purchase-step',
+          3:'dist-step',
+          4:'footer-block',
+        }
+        const step = stepsNumbers[stepNumber]
+        const targetElement = document.querySelector(`#${step}`);
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setCurrentStep(stepNumber)
+      }
 
     useEffect(() => {
         getAllPartnersFromPool(project.poolId).then(({sumInvest}) => {
@@ -77,7 +93,6 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
     <>
         <div className={styles.wrapper}>
         <div className={styles.body}>
-   
             <div className={styles.title}>
                 IDO Details
             </div>
@@ -246,7 +261,7 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
             <div className={styles.roadmap}>
             <div className={styles.bodyLine}>
             </div>
-                <div className={styles.subTitle}>
+                <div id='staking-step' className={styles.subTitle}>
                     Staking
                 </div>
                 <div className={styles.columnsDate}>
@@ -257,7 +272,7 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
                 <div className={styles.text}>
                     {HTMLReactParser(project.stakingText)}
                 </div>
-                <div className={styles.overview}>
+                <div id='purchase-step' className={styles.overview}>
                 <div className={styles.subTitle}>
                 Purchase
                 </div>
@@ -270,7 +285,7 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
                     {HTMLReactParser(project.purchaseText)}
                 </div>
                 </div>
-                <div className={styles.infoBlock}>
+                <div id='dist-step' className={styles.infoBlock}>
                     <div className={styles.subTitle}>
                         Distribution
                     </div>
@@ -286,6 +301,8 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
         </div>
         <div className={styles.bannerWrapper}>
             <TimeBanner
+            changeStep={changeStep}
+            currentStep={currentStep}
             steps={steps}
             date={project.dateEnd} 
             time={project.timeEnd}

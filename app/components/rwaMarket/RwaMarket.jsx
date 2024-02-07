@@ -19,6 +19,8 @@ const RwaMarket = ({isOpen}) => {
     </div>
     :
     <ClosedPageLabel
+    className={'rwa'}
+    description={`RWA marketplace is an important part of L2PAD. Here you will be able to buy a part of a real-world asset which has a high value. We ensure that every asset represented on our platform will be checked and evaluated by our financial and legal advisors so as to mitigate risks of fraud and of losses. Here you will find different types of assets such as real estate, rights of claim, vehicles etc.  Diversification of investments is a must-have point in any investing strategy.`}
     text={'Assets and liabilities'}
     label={'Soon'}
     />

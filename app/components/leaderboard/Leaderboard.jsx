@@ -43,7 +43,7 @@ export default function Leaderboard() {
     <div className={styles.marginTop}>
         <Info 
         title={'Leaderboard'} 
-        text={'The most active and successful members of No name community'}
+        text={'The most active and successful members of L2PAD community'}
         />
         <div className={styles.wrapper}>
             <MyScore userData={{

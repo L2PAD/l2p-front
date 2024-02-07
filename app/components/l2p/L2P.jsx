@@ -23,8 +23,7 @@ const L2P = ({socialLinks}) => {
     useEffect(() => {
         const user = getUserData()
         setUserData(user)
-        setWalletAddress(window?.ethereum?.selectedAddress)
-        // videoRef.current.play()
+        setWalletAddress(user?.address)
     }, [videoRef]);
   
   return (
@@ -37,13 +36,6 @@ const L2P = ({socialLinks}) => {
             />
             <div className={styles.overlay}></div>
         </div>
-        {/* <video
-        muted
-        ref={videoRef}
-        loop
-        >
-            <source src={loader('/1.webm')} type='video/webm'/>
-        </video> */}
         <div className={styles.body}>
             <header>
                 <Link className={styles.logo} href={'/'}>

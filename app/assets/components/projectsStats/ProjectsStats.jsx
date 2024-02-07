@@ -1,8 +1,7 @@
 import { useCallback,useState,useMemo } from 'react'
-import styles from './stats.module.scss'
 import Info from '../info/Info'
 import ProjectsStatsTable from '../projectsStatsTable/ProjectsStatsTable'
-
+import styles from './stats.module.scss'
 
 const filtersInitialState = [
     {

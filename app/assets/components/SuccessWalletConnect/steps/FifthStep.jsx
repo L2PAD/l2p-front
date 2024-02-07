@@ -10,12 +10,12 @@ export default function FifthStep({steps,stepHandler,userData}) {
         <div className={styles.body + ' ' + styles.nftAlert}>
           <Image alt='meta mask' src={nftAlert}/>
           <div className={styles.subTitle + ' ' + styles.nftText}>
-          You don't have a No name NFT Key!
+          You don't have a L2PAD NFT Key!
           </div>
         </div>
         <div className={styles.buttons}>
         <SquareBtn 
-        text={'Buy on No name'} 
+        text={'Buy on L2PAD'} 
         width='440' 
         type='red'/>
         </div>

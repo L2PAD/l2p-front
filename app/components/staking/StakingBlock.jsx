@@ -179,7 +179,7 @@ export default function StakingBlock({
           ?
           <div className={styles.sectionWrapper}>
             <div className={styles.nftsTitle}>
-              Stake your Noname NFT so as to be ready to invest
+              Stake your L2PD NFT so as to be ready to invest
             </div>
             <div className={styles.nftsStaking}>
               <div className={styles.cards}>

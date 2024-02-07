@@ -48,12 +48,10 @@ export default function Marketplace({collectionsData}) {
         title={'NFT Market'}
         />
         <div className={styles.subTitle}>
-        NFTs marketplace for zkSync projects where you can buy/sell your NFT.
+        NFTs marketplace for Blast projects where you can buy/sell your NFT.
         </div>
         <div className={styles.description}>
-        No name has developed its own NFT Marketplace so you can easily trade your NFTs. 
-        You no longer have  to look for other places to trade. No name has everything 
-        you need for comfortable investing and dealing with your assets. 
+        L2PAD has developed its own NFT Marketplace so you can easily trade your NFTs. You no longer have to look for other places to trade. L2PAD has everything you need for comfortable investing and dealing with your assets.
         </div>
         <div className={styles.collectionsWrapper}>
             <div className={styles.head}>
