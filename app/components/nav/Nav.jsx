@@ -230,22 +230,28 @@ const Nav = ({userData}) => {
             <nav className={styles.nav}>
                 <ul className={styles.links}>
                 <li className={styles.investsBtn}>
-                    <button 
-                    className={navModalState ? styles.rotate : 'none'}
-                    onClick={navModalHandler}>
+                    <a 
+                    className={navModalState ? styles.rotate + " " + styles.link : styles.link}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        navModalHandler(e)
+                    }}>
                         Invest
-                    </button>
+                    </a>
                 </li>
                 {links.map((link,index) => {
                     if(link?.isBtn){
                         return (
                             <li className={styles.secondBtn} key={index}>
-                               <button 
-                               onClick={rwaModalHandler}   
-                                className={rwaModalState ? styles.rotate : 'none'}
-                                >
+                                <a 
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    rwaModalHandler(e)
+                                }}
+                                className={rwaModalState ? styles.rotate + ' ' + styles.link : styles.link}
+                                href={``}>
                                     {link.title}
-                                </button>
+                                </a>
                                 <RwaCreditModal isVisible={rwaModalState} handler={rwaModalHandler}/>
                             </li>
                         )
