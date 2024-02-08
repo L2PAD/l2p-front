@@ -215,7 +215,7 @@ export default function StakingBlock({
           <div className={styles.loansInfo}>
             <Info
               text={
-                'Loan is a contractual agreement between NONAME and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'
+                'Loan is a contractual agreement between L2PAD and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'
               }
               title={"My loans"}
             />
@@ -231,7 +231,7 @@ export default function StakingBlock({
           className={'stakingLabel'} 
           text={'My loans'} 
           label={'Soon'} 
-          description={'Loan is a contractual agreement between NONAME and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'}/>
+          description={'Loan is a contractual agreement between L2PAD and a borrower, set for a definite "duration" or "term". During this term, the borrower is obligated to make the scheduled payments until the loan is fully repaid.'}/>
         }
       </div>
     </>

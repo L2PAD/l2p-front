@@ -28,7 +28,7 @@ const links = [
         img:cryptoSvg,
         href:'/crypto',
         title:'Public Launch',
-        description:'The best crypto startups powered by zkSync and other beneficial offers from the cryptomarket',
+        description:'The best crypto startups powered by Blast and other beneficial offers from the cryptomarket',
     },
     {
         img:realEstateSvg,

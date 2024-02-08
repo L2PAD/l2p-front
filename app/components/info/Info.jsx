@@ -79,8 +79,9 @@ export default function Info({data}) {
                         )
                     })}
                 </nav>
-            <div className={styles.text}>
-            Learn from others, share your work, and extend your tool set with a diverse group of web3 founders, community managers, growth hackers, marketers, content writers and many more from around            </div>
+            <div className={styles.text + ' ' + styles.mainText}>
+            Blast-powered solution that enables users and projects to find exactly what they need. Everything in one place. Launchpad | Restaking | NFT Marketplace | RWA           
+            </div>
             <MainBtn text={'Join us'} handler={modalHandler}/>
             <Form handler={modalHandler} isVisible={state}/>
         </div>

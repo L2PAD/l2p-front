@@ -12,8 +12,8 @@ import hiddenSvg from '../../assets/icons/hidden.svg'
 import starSvg from '../../assets/icons/star.svg'
 import heartSvg from '../../assets/icons/heart.svg'
 import heartFillSvg from '../../assets/icons/heartFill.svg'
-import styles from '../styles/project.module.scss'
 import parseGoal from '../../utils/parseGoal'
+import styles from '../styles/project.module.scss'
 
 export default function Project({type,project,index,filter,inDashboard,isNftAccess}) {
     const [loading,setLoading] = useState(false)

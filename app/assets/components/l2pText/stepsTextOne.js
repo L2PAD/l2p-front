@@ -1,9 +1,9 @@
-export const firstStep = `<div>Hello, welcome to L2PAD, a new  <button data-custom="unselected" id="2">NFT</button> </div>`
-export const secondStep = `<div><span data-custom="close-btn" id="1">Hello, welcome to L2PAD, a new  <button data-custom="selected" id="1">NFT</button> </span> based platform in Blast network built around <button data-custom="unselected" id="3">NFT Launchpad</button> designed to bring quality to the market.</div>`
+export const firstStep = `<div>Hello, welcome to <button data-custom="unselected" id="2">L2PAD</button></div>`
+export const secondStep = `<div><span data-custom="close-btn" id="1">Hello, welcome to <button data-custom="selected" id="1">L2PAD</button></span>, a new  NFT based platform in Blast network built around <button data-custom="unselected" id="3">NFT Launchpad</button> designed to bring quality to the market.</div>`
 export const thirdStep = `
 <div><span data-custom="close-btn" id="2"
->Hello, welcome to L2PAD, a new
-<button data-custom="selected" id="2">NFT</button>  based platform in Blast
+>Hello, welcome to <button data-custom="selected" id="1">L2PAD</button>, a new
+NFT  based platform in Blast
 network built around
 <button data-custom="unselected" id="2">NFT Launchpad</button> designed to
 bring quality to the market.</span>
@@ -21,8 +21,8 @@ necessary within our platform.
 </span>  */}
 export const fourthStep = `
 <div><span data-custom="close-btn" id="3"
->Hello, welcome to L2PAD, a new
-<button data-custom="selected" id="2">NFT</button>  based platform in Blast
+>Hello, welcome to <button data-custom="selected" id="1">L2PAD</button>, a new
+NFT  based platform in Blast
 network built around
 <button data-custom="unselected" id="3">NFT Launchpad</button> designed to
 bring quality to the market.

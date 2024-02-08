@@ -32,7 +32,11 @@
 
   transition: opacity 0.3s ease;
   &:hover {
-    font-weight: 800;
+    opacity: 0.8;
+    color: #131316;
+  }
+  &:active {
+    opacity: 0.6;
     color: #131316;
   }
 
@@ -49,6 +53,7 @@
     max-height: 78px;
   }
 }
+
 .text {
   margin: 24px 0 50px;
   font-family: "Raleway";
@@ -63,6 +68,10 @@
   @media (max-width:450px) {
     font-size: 20px;
   }
+}
+.mainText{
+  text-align: center;
+  font-weight: 700;
 }
 .about {
   margin: 100px 0;

@@ -281,7 +281,7 @@ const VotePage = ({isOpen}) => {
           <div className={styles.info}>
             <Info
             title={`VOTE`}
-            text={`The voice of the NONAME community`}
+            text={`The voice of the L2PAD community`}
             />
           </div>
           <div className={styles.search}>

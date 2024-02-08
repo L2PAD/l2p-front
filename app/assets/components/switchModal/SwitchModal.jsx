@@ -13,9 +13,9 @@ export default function SwitchModal({isVisible,handler}) {
     >
         <div className={styles.body}>
             <div className={styles.description}>
-            Please change your dapp browser to zkSync to continue
+              Please change your dapp browser to Blast to continue
             </div>
-            <SquareBtn handler={() => handler('active_switch')} type='red' width='330' text={'Switch to zkSync'}/>
+            <SquareBtn handler={() => handler('active_switch')} type='red' width='330' text={'Switch to Blast'}/>
         </div>
     </Modal>
   )

@@ -24,13 +24,12 @@ export async function getServerSideProps() {
 export default function Home({projects}) {
 
 const pageInfo = {
-  title:'Business',
+  title:'RWA',
   description:
   `
   <div class="center-text">
     <p> 
-    Noname is not limited by the web3 startups. We provide opportunities in different spheres such as RWA, classic startups etc. Find what’s best for you with Noname. 
-    </p>
+    L2PAD is not limited by the web3 startups. We provide opportunities in different spheres such as RWA, classic startups etc. Find what’s best for you with L2PAD.    </p>
   </div>
   `
 }

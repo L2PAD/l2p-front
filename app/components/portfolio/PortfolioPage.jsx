@@ -20,7 +20,6 @@ export default function PortfolioPage() {
   const isAuth = useSelector((state) => state.auth.userData.isAuth)
 
   useEffect(() => {
-
     const getProjectsInfo = async () => {
       setLoadingPage(true)
       const {success,projects} = await getUserProjects(getUserData().address)

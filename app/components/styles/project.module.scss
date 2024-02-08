@@ -3,7 +3,8 @@
   cursor: pointer;
   box-sizing: border-box;
   padding: 12px;
-  max-width: 289px;
+  max-width: 290px;
+  min-width: 290px;
   width: 100%;
   box-shadow: 4px 4px 10px #eeeeee;
   border-radius: 16px;
@@ -16,6 +17,7 @@
   }
   @media (max-width: 540px) {
     max-width: 90vw;
+    min-width: 220px;
   }
   transition: all 0.3s ease;
   &:hover {
