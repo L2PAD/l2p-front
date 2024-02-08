@@ -39,7 +39,7 @@
   display: flex;
   width: 100%;
   max-width: 266px;
-  @media (max-width:780px) {
+  @media (max-width: 780px) {
     max-width: 100%;
   }
 }
@@ -65,7 +65,9 @@
   }
 }
 .colum.infoColumn {
+  max-width: 193px;
   @media (max-width: 780px) {
+    max-width: 100%;
     width: 100%;
   }
 }
