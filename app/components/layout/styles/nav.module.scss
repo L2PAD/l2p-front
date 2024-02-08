@@ -121,6 +121,7 @@
 }
 
 .investsBtn {
+  transform: translateY(-0.5px);
   a {
     font-family: inherit;
     position: relative;
@@ -137,14 +138,16 @@
       content: url("../../../assets/icons/arrow-rotate.svg");
       margin: 0px 0px 0px 5px;
       position: absolute;
-      top: -3px;
+      top: -1.5px;
       right: -7px;
+      @media (max-width: 1400px) {
+        top: -3px;
+      }
     }
     @media (max-width: 1400px) {
       font-size: 14px;
     }
   }
-
 }
 .rotate {
   &::after {
