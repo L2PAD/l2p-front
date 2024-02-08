@@ -17,7 +17,6 @@
   }
   @media (max-width: 540px) {
     max-width: 90vw;
-    min-width: 220px;
   }
   transition: all 0.3s ease;
   &:hover {
@@ -39,6 +38,10 @@
 .row {
   display: flex;
   width: 100%;
+  max-width: 266px;
+  @media (max-width:780px) {
+    max-width: 100%;
+  }
 }
 .rowLast {
   display: flex;
@@ -56,7 +59,6 @@
 }
 .colum {
   position: relative;
-  width: fit-content;
   img {
     border-radius: 15px;
     overflow: hidden;
