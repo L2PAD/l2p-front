@@ -10,7 +10,7 @@ const filtersInitialState = [
         name:'startup'
     },
     {
-        title:'Business',
+        title:'RWA',
         isSelect:false,
         name:'realestate'
     },

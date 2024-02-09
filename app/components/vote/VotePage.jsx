@@ -405,7 +405,7 @@ const VotePage = ({isOpen}) => {
         <ClosedPageLabel
         text={'VOTE'}
         label={'Soon'}
-        description={'The voice of the NONAME community'}
+        description={'The voice of the L2PAD community'}
         />
       )
 }

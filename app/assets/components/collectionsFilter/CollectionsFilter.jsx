@@ -20,12 +20,12 @@ const filtersInitialState = [
         isSelect:false,
     },
     {
-        name:'Business',
+        name:'RWA',
         filterValue:'business',
         isSelect:false,
     },
     {
-        name:'zkSync',
+        name:'Blast',
         filterValue:'zksync',
         isSelect:false,
     },

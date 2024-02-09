@@ -33,7 +33,7 @@ const links = [
     {
         img:realEstateSvg,
         href:'/business',
-        title:'Business',
+        title:'RWA',
         description:'Invest in various assets including startups, real estate etc. We provide the best options for mid-term and long-term investnents.',
     },
 ]
