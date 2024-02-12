@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 export default function ProjectInfoBlock({img,steps}) {
   const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
-  const isVideo = img.split('.').pop().includes('mp4')
+  const isVideo = img?.split('.').pop().includes('mp4')
 
   return (
     <div className={styles.body}>

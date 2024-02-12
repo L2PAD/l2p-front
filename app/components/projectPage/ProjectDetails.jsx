@@ -55,7 +55,7 @@ const ProjectDetails = ({project}) => {
   const [steps,setSteps] = useState(() => stepsInitital)
   const [currentStep,setCurrentStep] = useState(1)
   const wrapperRef = useRef(null)
-
+  
   const changeStep = (stepNumber) => {
     const stepsNumbers = {
       1:'first-step',

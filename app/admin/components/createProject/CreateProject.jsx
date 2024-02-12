@@ -456,7 +456,7 @@ export default function CreateProject({type,status,id}) {
           handler={socialMediaHandler}/>
       </div>
 
-      <div className={styles.company}>
+      {/* <div className={styles.company}>
         <div>
           <h2>About company</h2>
         </div>
@@ -465,7 +465,7 @@ export default function CreateProject({type,status,id}) {
         handler={inputsHandler}
         name={'company'}
         />
-      </div>
+      </div> */}
 
       <div className={styles.links}>
         <div className={styles.linksTitle}>
