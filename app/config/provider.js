@@ -7,7 +7,24 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 
 //const chains = [chain.mainnet];
-
+export const blastNet = {
+  id: 168587773,
+  name: 'Blast Sepolia',
+  network: 'Blast Sepolia',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'ETH',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    public: { http: ['https://sepolia.blast.io'] },
+    default: { http: ['https://sepolia.blast.io'] },
+  },
+  blockExplorers: {
+    etherscan: { name: 'SnowTrace', url: 'https://testnet.blastscan.io' },
+    default: { name: 'SnowTrace', url: 'https://testnet.blastscan.io' },
+  }
+}
 export const zkTestnet = {
   id: 168587773,
   name: 'Blast Sepolia',

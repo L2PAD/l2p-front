@@ -23,6 +23,7 @@ import icons from '../../assets/icons/user/user'
 import Image from 'next/image'
 import Lottie from 'lottie-react'
 import bookSvg from '../../assets/icons/book.svg'
+import { blastNet } from '../../config/provider';
 import KYCsvg from '../../assets/icons/user/kyc.svg'
 import walletSvg from '../../assets/icons/wallet.svg'
 import supportSvg from '../../assets/icons/user/support.svg'
@@ -61,19 +62,18 @@ async function getStatus() {
  }
  
 async function changeNetwork(){
-
   const result= await window.ethereum.request({
     method: "wallet_addEthereumChain",
     params: [{
-      chainId: "0x144",
-      rpcUrls: ["https://mainnet.era.zksync.io"],
-      chainName: "zkSync Era Mainnet",
+      chainId: '0xa0c71fd',
+      rpcUrls: ["https://sepolia.blast.io"],
+      chainName: "Blast Sepolia Testnet",
       nativeCurrency: {
           name: "ETH",
           symbol: "ETH",
           decimals: decimals
       },
-      blockExplorerUrls: ["https://explorer.zksync.io/"]
+      blockExplorerUrls: ["https://testnet.blastscan.io"]
     }]
 });
 console.log('Chain',result)
