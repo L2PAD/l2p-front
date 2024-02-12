@@ -1,9 +1,9 @@
-import Info from '../../assets/components/info/Info'
-import styles from '../styles/banner.module.scss'
-import Swiper from '../../assets/components/swiper/Swiper'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Info from '../../assets/components/info/Info'
+import Swiper from '../../assets/components/swiper/Swiper'
 import getSlides from '../../admin/services/bannerServices/getSlides'
+import styles from '../styles/banner.module.scss'
 
 export default function Banner() {
     const [slides,setSlides] = useState([])
