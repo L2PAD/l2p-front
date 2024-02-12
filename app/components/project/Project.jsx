@@ -100,7 +100,9 @@ export default function Project({type,project,index,filter,inDashboard,isNftAcce
             <div className={styles.row}>
                 <div className={styles.colums}>
                     <div className={styles.colum}>
-                        <Image loader={() => loader(project.img)} width={'64'} height={'64'} alt={'img' + index} src={project.img}/>
+                        <Image 
+                        className={styles.projectImg}
+                        loader={() => loader(project.img)} width={'64'} height={'64'} alt={'img' + index} src={project.img}/>
                     </div>
                     <div className={styles.colum + ' ' + styles.infoColumn}>
                         <div className={styles.info}>
@@ -185,7 +187,9 @@ export default function Project({type,project,index,filter,inDashboard,isNftAcce
             <div className={styles.row}>
                 <div className={styles.colums}>
                     <div className={styles.colum}>
-                        <Image loader={() => loader(project.img)} width={'64'} height={'64'} alt={'img' + index} src={project.img}/>
+                        <Image 
+                        className={styles.projectImg}
+                        loader={() => loader(project.img)} width={'64'} height={'64'} alt={'img' + index} src={project.img}/>
                     </div>
                     <div className={styles.colum + ' ' + styles.infoColumn}>
                         <div className={styles.info}>

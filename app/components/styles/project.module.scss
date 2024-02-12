@@ -59,15 +59,15 @@
 }
 .colum {
   position: relative;
-  img {
-    max-width: 64px;
-    max-height: 64px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 15px;
-    overflow: hidden;
-  }
+}
+.projectImg{
+  max-width: 64px;
+  max-height: 64px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 15px;
+  overflow: hidden;
 }
 .colum.infoColumn {
   max-width: 193px;

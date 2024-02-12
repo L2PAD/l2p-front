@@ -58,17 +58,17 @@
   width: 96px;
   height: 35px;
   border-radius: 8px;
-  background: rgba(255, 80, 125, 0.1);
-  color: #ff507d;
+  background: #d7492d21;
+  color: #D74A2D;
   font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
   svg {
-    fill: #ff507d;
+    fill: #D74A2D;
     transition: all 0.3s ease;
   }
   &:hover {
-    background: #ff507d;
+    background: #D74A2D;
     color: white;
   }
   &:hover svg {
@@ -97,6 +97,7 @@
   border-radius: 8px;
   border: 1px solid rgba(83, 98, 124, 0.07);
   background: #FFF;
+
 }
 
 .visible{
