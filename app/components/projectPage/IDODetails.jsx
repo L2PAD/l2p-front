@@ -301,6 +301,7 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
         </div>
         <div className={styles.bannerWrapper}>
             <TimeBanner
+            projectName={project?.title}
             changeStep={changeStep}
             currentStep={currentStep}
             steps={steps}

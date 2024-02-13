@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUserData } from '../../../store/slices/authSlice'
 import { toggleModal, toggleModalWithoutBlock } from '../../../store/slices/modalsSlice'
 import { TelegramShareButton,TwitterShareButton} from 'react-share';
-import { url } from '../../../config/api'
+import { shareLink } from '../../../config/api'
 import { getAllPartnersFromPool } from '../../../smart/initialSmartMain'
 import HTMLReactParser from 'html-react-parser'
 import stepActiveIcon from '../../icons/step-active.svg'
@@ -53,7 +53,7 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
 
     const shareReferral = async () => {
         const result = await navigator.share({
-            url:`${url}/${project.path}/${project._id}`,
+            url:`${shareLink}/${project.path}/${project._id}`,
             text:"Noname referral link"
         })
     }
@@ -141,11 +141,37 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
                             }
                         </div>
                     </div>
-                    <div className={styles.shareBtn}>
+                    <div 
+                    className={
+                        styles.shareBtn + ' ' + styles.shareWrapper
+                    }>
                         <button onClick={() => dispatch(toggleModalWithoutBlock('share'))}>
                             <Image src={shareSvg} alt='share'/>
                             <span>Share</span>
                         </button>
+                        <div 
+                        className={
+                            shareModalState 
+                            ? 
+                            styles.shareModal + ' ' + 'open-modal'
+                            :
+                            styles.shareModal
+                        }>
+                            <button onClick={shareReferral} className={styles.shareButton}>
+                                <Image src={shareLinkSvg} alt='share-referral'/>
+                                <span>Share referral link</span>
+                            </button>
+                                <TelegramShareButton url={`${shareLink}/${project.path}/${project._id}`}>
+                                <Image src={telegramSvg} alt='share-telegram'/>
+                                <span>Telegram</span>
+                                </TelegramShareButton>
+                            <TwitterShareButton
+                            url={`${shareLink}/${project.path}/${project._id}`}
+                            >
+                                <Image src={twitterSvg} alt='share-twitter'/>
+                                <span>Twitter</span>
+                            </TwitterShareButton>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.infoTitleBlock}>
@@ -157,29 +183,7 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
             </div>
         </div>
 
-        <div 
-        className={
-            shareModalState 
-            ? 
-            styles.shareModal + ' ' + 'open-modal'
-            :
-            styles.shareModal
-        }>
-            <button onClick={shareReferral} className={styles.shareButton}>
-                <Image src={shareLinkSvg} alt='share-referral'/>
-                <span>Share referral link</span>
-            </button>
-                <TelegramShareButton url={`${url}/${project.path}/${project._id}`}>
-                <Image src={telegramSvg} alt='share-telegram'/>
-                <span>Telegram</span>
-                </TelegramShareButton>
-            <TwitterShareButton
-            url={`${url}/${project.path}/${project._id}`}
-            >
-                <Image src={twitterSvg} alt='share-twitter'/>
-                <span>Twitter</span>
-            </TwitterShareButton>
-        </div>
+
     </div>
     <div className={styles.projectFullDescription}>
         {HTMLReactParser(text)}

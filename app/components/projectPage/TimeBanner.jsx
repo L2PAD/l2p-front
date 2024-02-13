@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
-import {useSelector} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
+import { toggleModal } from '../../store/slices/modalsSlice'
 import SquareBtn from '../UI/buttons/SquareLightBtn'
 import useTimer from '../../hooks/useTimer'
 import styles from '../styles/time-banner.module.scss'
 
-const TimeBanner = ({steps,date,time,currentStep,changeStep}) => {
+const TimeBanner = ({steps,date,time,currentStep,changeStep,projectName}) => {
     const [data,setData] = useState({})
     const {days,hours,minutes,seconds} = useTimer(date,time)
     const isAuth = useSelector((state) => state.auth.userData?.isAuth)
+    const dispatch = useDispatch()
  
     useEffect(() => {
         setData({days,hours,minutes,seconds})
@@ -17,7 +19,7 @@ const TimeBanner = ({steps,date,time,currentStep,changeStep}) => {
     <div className={styles.wrapper}>
         <div className={styles.body}>
             <div className={styles.title}>
-                BeFi Labs IDO registration ends in:
+                {projectName} sales ends in:
             </div>
             <div className={styles.date}>
                 {data.days}d {data.hours}h {data.minutes}m {data.seconds}s
@@ -27,7 +29,9 @@ const TimeBanner = ({steps,date,time,currentStep,changeStep}) => {
                 ?
                 <></>  
                 :
-                <SquareBtn text={'Connect wallet'}/>   
+                <SquareBtn 
+                handler={() => dispatch(toggleModal('wallet'))}
+                text={'Connect wallet'}/>   
             }
         </div>
         <div className={styles.steps}>

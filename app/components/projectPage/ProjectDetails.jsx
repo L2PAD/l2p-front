@@ -165,6 +165,7 @@ const ProjectDetails = ({project}) => {
         </div>
         <div className={styles.bannerWrapper}>
           <TimeBanner 
+          projectName={project.title}
           changeStep={changeStep}
           currentStep={currentStep}
           steps={steps}

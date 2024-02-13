@@ -75,9 +75,8 @@ async function changeNetwork(){
       },
       blockExplorerUrls: ["https://testnet.blastscan.io"]
     }]
-});
+  });
 console.log('Chain',result)
-
 }
 
 async function get_ETH_balance() {
@@ -441,7 +440,8 @@ export default function UserSettings({disconnect,user}) {
         </div>
         <div className={styles.row}>
            <button 
-            onClick={() => router.push(layoutData?.footer?.shillClubLink)}
+            // onClick={() => router.push(layoutData?.footer?.shillClubLink)}
+            onClick={() => router.push('/shillclub')}
            className={styles.btn + ' ' + styles.academy}>
               <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 16 16" fill="none">
                 <path fillRule="evenodd" clipRule="evenodd" d="M1.5 1.99935C1.5 0.986829 2.32081 0.166016 3.33333 0.166016H10C11.0125 0.166016 11.8333 0.986829 11.8333 1.99935V7.66602C11.8333 7.94215 11.6095 8.16602 11.3333 8.16602C11.0572 8.16602 10.8333 7.94215 10.8333 7.66602V1.99935C10.8333 1.53911 10.4603 1.16602 10 1.16602H3.33333C2.87309 1.16602 2.5 1.53911 2.5 1.99935V13.9994C2.5 14.4596 2.87309 14.8327 3.33333 14.8327H9.33334C9.60947 14.8327 9.83334 15.0566 9.83334 15.3327C9.83334 15.6088 9.60947 15.8327 9.33334 15.8327H3.33333C2.32081 15.8327 1.5 15.0119 1.5 13.9994V1.99935Z" fill="black"/>
