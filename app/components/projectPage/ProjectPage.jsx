@@ -33,8 +33,8 @@ import getUserData from "../../utils/getUserData";
 import addProjectToUser from '../../services/addProjectToUser'
 import getProjectStatus from '../../utils/getProjectStatus'
 import Loader from '../../assets/components/loader/Loader'
-import styles from '../styles/project-page.module.scss'
 import IDODetails from "./IDODetails";
+import styles from '../styles/project-page.module.scss'
 
 async function get_allowance_sum() {
   const address_nft= '0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4';
@@ -349,8 +349,8 @@ export default function ProjectPage({project}) {
         project={project} 
         text={project?.descriptionFull ? project?.descriptionFull : ''}
         />
-            <div className={styles.sections}>
-      <div className={styles.sectionsBtns}>
+      <div className={styles.sections}>
+        <div className={styles.sectionsBtns}>
         {
           sections.map((section) => {
             return (
@@ -369,9 +369,9 @@ export default function ProjectPage({project}) {
             )
           })
         }
-      </div>
+        </div>
         <hr className={styles.sectionLine}/>
-    </div>
+      </div>
     </div>
     {
       selectedSection.name === sections[0].name 

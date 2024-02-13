@@ -305,8 +305,8 @@ const IDODetails = ({modalHandler,myInvest,project,isClaimed,isClaim}) => {
             changeStep={changeStep}
             currentStep={currentStep}
             steps={steps}
-            date={project.dateEnd} 
-            time={project.timeEnd}
+            date={project.purchaseDates.to} 
+            time={project.purchaseTimeEnd}
             />
         </div>
     </div>

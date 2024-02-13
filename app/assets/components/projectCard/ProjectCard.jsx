@@ -22,34 +22,10 @@ import loader from '../../../utils/loader'
 import icons from '../../icons/socialmedia/socialmedia'
 import styles from './project-card.module.scss'
 
-export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,project,steps,text}) {
+export default function ProjectCard({project,steps,text}) {
     const shareModalState = useSelector((state) => state.modals.share.state)
-    const userData = useSelector((state) => state.auth.userData)
-    const isFavourite = userData?.favourites?.includes(project._id)
-    const [progressValue,setProgressValue] = useState(0)
-    const [fundedValue,setFundedValue] = useState(0)
-    const [myInvestValue,setMyInvestValue] = useState(0)
-    const [currentGoal,setCurrentGoal] = useState(0)
-    const router = useRouter()
 
     const dispatch = useDispatch()
-    
-    const addProject = async () => {
-        if(!userData.isAuth){
-            dispatch(toggleModal('wallet'))
-            return
-        }
-
-        if(userData?.favourites?.includes(project._id)) return
-
-        const updatedUserData = {...userData,favourites:[...userData.favourites,project._id]}
-        dispatch(setUserData(updatedUserData))
-        
-        const {success} = await favourites(project._id,userData.address)
-        if(success){
-            modalHandler(null,true)
-        }
-    }
 
     const shareReferral = async () => {
         const result = await navigator.share({
@@ -58,25 +34,6 @@ export default function ProjectCard({myInvest,isClaimed,isClaim,modalHandler,pro
         })
     }
 
-    useEffect(() => {
-        getAllPartnersFromPool(project.poolId).then(({sumInvest}) => {
-            const currentFund =                     
-            project.status.toLowerCase() === 'ended'
-            ?
-            parseGoal(project.totalRaise)
-            :
-            parseGoal(project.goal)
-
-            setCurrentGoal(currentFund)
-            
-            if(sumInvest){
-                setProgressValue(parseFunded(sumInvest,currentFund))
-                setFundedValue(`$${sumInvest} (${parseFunded(sumInvest,currentFund)}%)`)
-                setMyInvestValue(`$${myInvest} (${parseFunded(myInvest,currentFund)}%)`)
-            }
-        })
-    },[])
-    
   return (
     <div className={styles.container}>
         <div className={styles.participateSteps}>

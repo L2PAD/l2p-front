@@ -55,7 +55,7 @@ const ProjectDetails = ({project}) => {
   const [steps,setSteps] = useState(() => stepsInitital)
   const [currentStep,setCurrentStep] = useState(1)
   const wrapperRef = useRef(null)
-  
+  console.log(project)
   const changeStep = (stepNumber) => {
     const stepsNumbers = {
       1:'first-step',
@@ -169,8 +169,8 @@ const ProjectDetails = ({project}) => {
           changeStep={changeStep}
           currentStep={currentStep}
           steps={steps}
-          date={project.dateEnd} 
-          time={project.timeEnd}
+          date={project.purchaseDates.to} 
+          time={project.purchaseTimeEnd}
           />
         </div>
     </div>
