@@ -234,7 +234,11 @@ const Nav = ({userData}) => {
                     className={navModalState ? styles.rotate + " " + styles.link : styles.link}
                     onClick={(e) => {
                         e.preventDefault()
-                        navModalHandler(e)
+                        if(userData?.isAuth){
+                            navModalHandler(e)
+                        }else{
+                            dispatch(toggleModal('wallet'))
+                        }   
                     }}>
                         Invest
                     </a>
