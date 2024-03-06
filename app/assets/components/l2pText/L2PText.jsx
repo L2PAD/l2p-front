@@ -3,7 +3,6 @@ import {useRouter} from 'next/navigation'
 import HTMLReactParser from 'html-react-parser'
 import styles from './l2p.module.scss'
 
-
 const L2PText = ({data}) => {
     const [step,setStep] = useState(1)
     const {replace} = useRouter()

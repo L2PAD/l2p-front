@@ -80,7 +80,7 @@ export default function Info({data}) {
                     })}
                 </nav>
             <div className={styles.text + ' ' + styles.mainText}>
-                5ire-powered solution that enables users and projects to find exactly what they need. Everything in one place. Launchpad | Restaking | NFT Marketplace | RWA           
+                Blast-powered solution that enables users and projects to find exactly what they need. Everything in one place. Launchpad | Restaking | NFT Marketplace | RWA           
             </div>
             <MainBtn text={'Join us'} handler={modalHandler}/>
             <Form handler={modalHandler} isVisible={state}/>

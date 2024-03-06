@@ -7,9 +7,9 @@ export default async (id,points) => {
 
         const username = localStorage.getItem('admin')
         
-        if(username !== 'admin'){
-            return {success:false}
-        }
+        // if(username !== 'admin'){
+        //     return {success:false}
+        // }
 
         const responce = await fetch(config.createUrl(`user/points/${id}/${points}`),{
             method:'PATCH',

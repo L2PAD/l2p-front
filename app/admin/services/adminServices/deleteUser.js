@@ -5,9 +5,9 @@ export default async (id) => {
     try{
         const username = localStorage.getItem('admin')
         
-        if(username !== 'admin'){
-            return {success:false}
-        }
+        // if(username !== 'admin'){
+        //     return {success:false}
+        // }
 
         const token = getToken()
 
