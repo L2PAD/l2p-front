@@ -8,7 +8,7 @@ import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 
 //const chains = [chain.mainnet];
 export const blastNet = {
-  id: 168587773,
+  id: 81457,
   name: 'Blast Sepolia',
   network: 'Blast Sepolia',
   nativeCurrency: {
@@ -17,16 +17,16 @@ export const blastNet = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    public: { http: ['https://sepolia.blast.io'] },
-    default: { http: ['https://sepolia.blast.io'] },
+    public: { http: ['https://rpc.blast.io'] },
+    default: { http: ['https://rpc.blast.io'] },
   },
   blockExplorers: {
-    etherscan: { name: 'SnowTrace', url: 'https://testnet.blastscan.io' },
-    default: { name: 'SnowTrace', url: 'https://testnet.blastscan.io' },
+    etherscan: { name: 'SnowTrace', url: 'https://blastscan.io' },
+    default: { name: 'SnowTrace', url: 'https://blastscan.io' },
   }
 }
 export const zkTestnet = {
-  id: 168587773,
+  id: 81457,
   name: 'Blast Sepolia',
   network: 'Blast Sepolia',
   nativeCurrency: {
@@ -35,12 +35,12 @@ export const zkTestnet = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    public: { http: ['https://sepolia.blast.io'] },
-    default: { http: ['https://sepolia.blast.io'] },
+    public: { http: ['https://rpc.blast.io'] },
+    default: { http: ['https://rpc.blast.io'] },
   },
   blockExplorers: {
-    etherscan: { name: 'SnowTrace', url: 'https://testnet.blastscan.io' },
-    default: { name: 'SnowTrace', url: 'https://testnet.blastscan.io' },
+    etherscan: { name: 'SnowTrace', url: 'https://blastscan.io' },
+    default: { name: 'SnowTrace', url: 'https://blastscan.io' },
   }
 }
 
@@ -102,5 +102,5 @@ export const decimals = 18
 export const adminAddress = '0xD128f1E3b2938eB005Bc5c750A66b82173f62857'
 // export const adminAddress = '0xD28e844A6dC6a89BaC7b46c54bC7C7F40033Aa79'
 
-export const chainIdValue = 168587773
+export const chainIdValue = 81457
 // export const chainIdValue = 97

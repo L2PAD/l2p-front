@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import SquareBtn from '../../../../components/UI/buttons/SquareLightBtn'
 import MetaMaskImage from '../../../img/metaMask.svg'
@@ -10,6 +11,7 @@ import DiscordImage from '../../../img/metaMask.svg'
 
 export default function FirstStep({steps,stepHandler,userData}) {
   const dispatch = useDispatch()
+  const router = useRouter()
   const isVisible = steps.firstStep
 
   return (
@@ -27,7 +29,7 @@ export default function FirstStep({steps,stepHandler,userData}) {
           </div>
         </div>
         <SquareBtn 
-        handler={() => stepHandler(2)}
+        handler={() => router.push('/invite')}
         btnId='none'
         text={'Sign Message'} 
         width='400' 

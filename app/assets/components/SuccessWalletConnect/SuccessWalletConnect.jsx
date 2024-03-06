@@ -94,17 +94,17 @@ export default function SuccessWalletConnect({userData}) {
   }
 
   useEffect(() => {
-    const isDiscordConnected =     
+    const isTelegramConnected =     
     localStorage.getItem('connectWalletStep') === '4' 
     && 
-    userData.discordData
+    userData.telegramData
   
     if(userData.isAuth){
       dispatch(closeModal('successConnect'))
       return
     }
 
-    if(isDiscordConnected){
+    if(isTelegramConnected){
       setSteps((prev) => {
        return {...prev,firstStep:false,fourthStep:true}
       }) 
@@ -143,7 +143,7 @@ export default function SuccessWalletConnect({userData}) {
     isVisible={isVisible && loginResult}
     type={isSuccessAuth ? 'success' : 'error'}
     title={isSuccessAuth ? 'Login souccessful!' : 'You don`t have a NFT Key!'}
-    text={isSuccessAuth ? 'You have successfully logged in.' : 'To get access please buy a No name NFT!'}
+    text={isSuccessAuth ? 'You have successfully logged in.' : 'To get access please buy a L2PAD NFT!'}
     />
     </>
     :

@@ -6,7 +6,7 @@ import MetaMaskImage from '../../../img/metaMask.svg'
 import smartCopy from '../../../icons/smart-copy.svg'
 import { closeModal, openModal, toggleModal } from '../../../../store/slices/modalsSlice'
 import sliceAddress from '../../../../utils/sliceAddress'
-import discordImage from '../../../img/discord.svg'
+import telegramLogo from '../../../img/telegram_logo.svg'
 import { discordRedirectLink } from '../../../../config/api'
 import styles from '../success-connect.module.scss'
 
@@ -23,9 +23,9 @@ export default function ThirdStep({steps,stepHandler,userData}) {
     ?
       <div className={styles.thirdStep}>
         <div className={styles.discordBody + ' ' + styles.success}>
-          <Image className={styles.discord} src={discordImage} alt='discord'/>
+          <Image className={styles.discord} src={telegramLogo} alt='telegram'/>
           <div className={styles.subTitle}>
-          Connect Discord
+          Connect Telegram
           </div>
         </div>
         <SquareBtn 

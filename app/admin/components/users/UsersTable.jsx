@@ -1,20 +1,40 @@
-import styles from '../../styles/users.module.scss'
-import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
-import blockUser from '../../services/adminServices/blockUser'
 import { useCallback, useMemo, useState } from 'react'
+import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {AiOutlineDownload} from 'react-icons/ai'
+import useModal from '../../../hooks/useModal'
+import Modal from '../../../assets/components/modal/Modal'
+import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
+import blockUser from '../../services/adminServices/blockUser'
 import getUsersData from '../../services/adminServices/getUsersData'
 import deleteUser from '../../services/adminServices/deleteUser'
+import updateUserPoints from '../../services/adminServices/updateUserPoints'
 import Input from '../../UI/Input'
 import arrow from '../../../assets/icons/arrow-rotate.svg'
-import Image from 'next/image'
+import styles from '../../styles/users.module.scss'
 
 export default function UsersTable({users}) {
     const [selectModal,setSelectModal] = useState(false)
     const [selectValue,setSelectValue] = useState('wallet')
     const [filter,setFilter] = useState('')
+    const [points,setPoints] = useState({id:'',points:0})
+    const {state,modalHandler} = useModal()
     const router = useRouter()
+
+    const inputHandler = (name,value) => {
+        setFilter(value)
+    }
+
+    const selectHandler = (event) => {
+        if(event.target.id){
+            setSelectValue(event.target.id)
+            setSelectModal(false)
+        }
+    }
+
+    const confirmUpdatePoints = useCallback(async () => {
+        const {success} = await updateUserPoints(points.id,points.points)
+    },[users,points])
     
     const block = useCallback( async (id) => {
         const {success,user} = await blockUser(id)
@@ -68,18 +88,9 @@ export default function UsersTable({users}) {
         })
     },[users,filter,selectValue])
 
-    const inputHandler = (name,value) => {
-        setFilter(value)
-    }
-
-    const selectHandler = (event) => {
-        if(event.target.id){
-            setSelectValue(event.target.id)
-            setSelectModal(false)
-        }
-    }
 
   return (
+    <>
     <div className={styles.body}>
         <div className={styles.head}>
             <div className={styles.title}>
@@ -128,6 +139,14 @@ export default function UsersTable({users}) {
                             handler={() => block(user._id)}
                             width='100'
                             text={user.blocked ? 'Unblock' : 'Block'}
+                            />
+                            <SquareBtn
+                            handler={() => {
+                                setPoints({id:user._id,points:user.points || 0})
+                                modalHandler('',true)
+                            }}
+                            width='100'
+                            text={'Points'}
                             />
                             <div className={styles.item}>
                             <div className={styles.key}>
@@ -216,5 +235,27 @@ export default function UsersTable({users}) {
             }
         </div>
     </div>
+    <Modal
+    title='Points'
+    isVisible={state}
+    handler={modalHandler}
+    >
+        <div className={styles.pointsModal}>
+            <Input
+            type='number'
+            name={'points'}
+            handler={(name,value) => setPoints((prev) => {
+                return {...prev,[name]:value}
+            })}
+            value={points.points}
+            />
+            <SquareBtn
+            width='400'
+            text={'Save'}
+            handler={confirmUpdatePoints}
+            />
+        </div>
+    </Modal>
+    </>
   )
 }

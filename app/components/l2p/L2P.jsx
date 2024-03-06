@@ -60,7 +60,7 @@ const L2P = ({socialLinks}) => {
                     </Link>
                     :
                     <button 
-                    onClick={() => router.push('/info?wallet=true')}
+                    onClick={() => router.push('/invite')}
                     className={styles.connectWalletBtn}>
                         Connect wallet
                     </button>

@@ -4,7 +4,7 @@ import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import useAuth from "./useAuth";
 import { useDispatch } from "react-redux";
-import { openModal } from "../store/slices/modalsSlice";
+import { closeModal, openModal } from "../store/slices/modalsSlice";
 
 
 export default function useWallet() {
@@ -46,10 +46,9 @@ export default function useWallet() {
           const web3ModalInstance = await new web3modal.connect()
           const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance)
           const web3Accounts = await web3ModalProvider.listAccounts();
-          localStorage.setItem('connectWalletStep','1')
-
+          
           setTimeout(() => {
-            dispatch(openModal('successConnect'))
+            dispatch(closeModal('wallet'))
           },100)  
 
           modalHandler(false)

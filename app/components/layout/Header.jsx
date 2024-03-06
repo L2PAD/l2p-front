@@ -36,7 +36,7 @@ const Header = ({headerData,investments}) => {
 
     const checkAuthAndNavigate = () => {
         if(!userData.isAuth){
-            dispatch(toggleModal('wallet'))
+            router.push('/invite')
             return
         }
 

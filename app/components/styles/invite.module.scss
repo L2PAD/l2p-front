@@ -1,0 +1,152 @@
+.wrapper {
+  max-width: 672px;
+  width: 100%;
+  margin: 40px auto 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width:720px) {
+    padding: 0px 15px;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #d74a2d;
+}
+.description {
+  font-size: 18px;
+  text-align: center;
+  margin: 24px 0;
+}
+.codeWrapper {
+  max-width: fit-content;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  input {
+    width: 46px;
+    height: 64px;
+    background: #fff7f5;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 32px;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+  }
+}
+.codeBorder {
+  position: relative;
+  background: linear-gradient(#ffffff 0%, #eeb2a61f, #d7492de1);
+  width: 49px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.empty::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: rgba(128, 128, 128, 0.836);
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.accessTerms {
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.accessTermsInfo {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #808894;
+  a {
+    color: #d74a2d;
+  }
+}
+.actions {
+  max-width: 672px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  @media (max-width:520px) {
+    margin-bottom: 40px;
+  }
+}
+.action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  border-radius: 12px;
+  background: rgb(255, 247, 245);
+  padding: 18px 24px;
+  button {
+    margin-left: auto;
+  }
+
+  @media (max-width:540px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 28px;
+    button {
+      max-width: fit-content;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+.actionInfo{
+  display: flex;
+}
+.actionText {
+  color: rgb(128, 136, 148);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+}
+.middleText {
+  margin: 0px 6px 0px 12px;
+}
+.actionLabel {
+  color: rgb(128, 136, 148);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+}
+.successIcon{
+  margin-left: auto;
+  img{
+    max-width: 35px;
+  }
+}
+.isLogin{
+  margin: 32px 0 50px;
+  font-size: 24px;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #d74a2d;
+}

@@ -24,6 +24,7 @@ import LoaderCustom from '../../assets/components/loader/Loader';
 import SuccessWalletConnect from '../../assets/components/SuccessWalletConnect/SuccessWalletConnect';
 import RwaCreditModal from '../../assets/components/rwaCreditNavModal/RwaCreditModal'
 import styles from '../layout/styles/nav.module.scss'
+import { useRouter } from 'next/router';
 
 const links = [
     {
@@ -107,68 +108,23 @@ const Nav = ({userData}) => {
     const [modal,setModal] = useState(false)
     const [config,setConfig] = useState({})
     const {loading,connectWallet} = useWallet()
-    const {open} = useWeb3Modal();
-    const dispatch = useDispatch()
-    const {changeAccount} = useAuth()
     const {cart} = useCart()
+    const dispatch = useDispatch()
+    const router = useRouter()
 
     const disconnectHandler = () => {
         dispatch(setUserData({address:'',balance:'',isAuth:false}))
         dispatch(closeModal('settings'))
-    }
-
-    const { address, isConnected ,status} = useAccount({onConnect:changeAccount,onDisconnect:disconnectHandler})
-
-    const checkDiscord = (user) => {
-        return user?.discordData
-        && 
-        localStorage.getItem('connectWalletStep') === '4'
+        localStorage.setItem('l2pad-auth',false)
     }
 
     const walletsHandler = (event) => {
-        event && event.preventDefault()
-
-        const user = JSON.parse(localStorage.getItem('userData')) 
-
-        const isThirdStep = checkDiscord(user)
-        
-        const isSecondStep = 
-        user?.address?.length 
-        && 
-        localStorage.getItem('connectWalletStep') === '1'
-
-        !isSecondStep && !isThirdStep && dispatch(toggleModal('wallet'))
-
-        isSecondStep && dispatch(openModal('successConnect'))
-
-        isThirdStep && dispatch(openModal('successConnect'))
-
     }
 
     const connect = async (config,wallet) => {
-      if(wallet === 'Connect Wallet'){
-        setConfig(config)
-        open()
-      }
-
-      if(wallet === 'Metamask'){
-        if(!window?.ethereum?.isMetaMask){
-            setConfig(config)
-            open()
-            return
-        }
         await connectWallet('Metamask',walletsHandler)
 
         return
-      }
-      if(wallet === 'TrustWallet'){
-        if(!window?.ethereum?.isTrustWallet){
-            setConfig(config)
-            open()
-            return
-        }
-        await connectWallet('TrustWallet',walletsHandler)
-      }
     }
 
     const modalHandler = (event) => {
@@ -192,21 +148,7 @@ const Nav = ({userData}) => {
         dispatch(closeModalWithoutBlock('rwa'))
         dispatch(toggleModalWithoutBlock('nav'))
     }
-
-    useEffect(() => {
-        if(isConnected){
-            walletsHandler(false)
-            localStorage.setItem('connectWalletStep','1')
-            setTimeout(() => {
-                dispatch(openModal('successConnect'))
-              },100)  
-        }
-    },[isConnected])
-
-    const isDiscordConnected = useMemo(() =>{
-        return checkDiscord(userData)
-    },[userData])
-   
+  
     if(loading){
         return <LoaderCustom/>
     }
@@ -237,7 +179,7 @@ const Nav = ({userData}) => {
                         if(userData?.isAuth){
                             navModalHandler(e)
                         }else{
-                            dispatch(toggleModal('wallet'))
+                            router.push('/invite')
                         }   
                     }}>
                         Invest
@@ -294,8 +236,10 @@ const Nav = ({userData}) => {
                     <UserSettings user={userData} disconnect={disconnectHandler}/>
                     :
                     <PinkBtn 
-                    handler={walletsHandler} 
-                    text={isDiscordConnected ? 'Login to No Name' : 'Connect wallet'} 
+                    handler={() => router.push('/invite')} 
+                    text={
+                        'Connect wallet' 
+                    } 
                     href={''} 
                     id={'wallet-btn'}
                     />
@@ -330,7 +274,7 @@ const Nav = ({userData}) => {
             modalHandler={modalHandler} 
             links={mobileLinks}
             />
-            <SuccessWalletConnect userData={userData}/>
+            {/* <SuccessWalletConnect userData={userData}/> */}
             <CartModal/>
         </div>
         </>

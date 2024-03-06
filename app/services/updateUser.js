@@ -3,7 +3,7 @@ import updateUserData from '../utils/updateUserData.js'
 
 export default async (data) => {
     try{
-        const address = JSON.parse(localStorage.getItem('userData')).address
+        const address = window?.ethereum?.selectedAddress
 
         const responce = await fetch(config.createUrl(`user/${address}`),{
             method:'PUT',

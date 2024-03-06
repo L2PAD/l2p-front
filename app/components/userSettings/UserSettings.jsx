@@ -15,6 +15,7 @@ import {
 } from '../../smart/initialSmartMain'
 import { chainIdValue, decimals } from '../../config/provider';
 import { LayoutContext } from '../layout';
+import getRefCode from '../../services/getRefCode'
 import getUserPartners from '../../services/getUserPartners'
 import useProjects from '../../hooks/useProjects';
 import addClaimToUser from '../../utils/addClaimToUser'
@@ -51,6 +52,7 @@ async function getStatus() {
   try{
    const provider = new ethers.providers.Web3Provider(window.ethereum);
    const chainId = await provider.getNetwork()
+   console.log(chainId)
    if (chainId.chainId!=chainIdValue){
      return true
    }
@@ -65,15 +67,15 @@ async function changeNetwork(){
   const result= await window.ethereum.request({
     method: "wallet_addEthereumChain",
     params: [{
-      chainId: '0xa0c71fd',
-      rpcUrls: ["https://sepolia.blast.io"],
-      chainName: "Blast Sepolia Testnet",
+      chainId: '0x13e31',
+      rpcUrls: ["https://rpc.blast.io"],
+      chainName: "Blast",
       nativeCurrency: {
           name: "ETH",
           symbol: "ETH",
           decimals: decimals
       },
-      blockExplorerUrls: ["https://testnet.blastscan.io"]
+      blockExplorerUrls: ["https://blastscan.io"]
     }]
   });
 console.log('Chain',result)
@@ -112,6 +114,7 @@ export default function UserSettings({disconnect,user}) {
   const [open_switchModal, setOpen_switchModal] = useState(false)
   const [currentProject,setCurrentProject] = useState()
   const {allProjects} = useProjects({})
+  const [refLinkValue,setRefLinkValue] = useState('')
   const layoutData = useContext(LayoutContext)
   const router = useRouter()
   
@@ -165,10 +168,18 @@ export default function UserSettings({disconnect,user}) {
     }
   }
 
-  const copyRef = (node) => {
+  const copyRef = async (node) => {
+    const {success,code} = await getRefCode()
+
+    if(!success) return
+    
+    const refLink = createRefLink(user._id,code)
+    setRefLinkValue(refLink)
     setRefCoppied(true)
     setIsCustomAlert(true)
-    copyText(refLinkInput.current)
+    setTimeout(() => {
+      copyText(refLinkInput.current)
+    },100)
   }
 
   const switchModalHandler= (event) => {
@@ -179,7 +190,6 @@ export default function UserSettings({disconnect,user}) {
     }
 
     if(event == 'active_switch') {
-
       changeNetwork().then(result => setOpen_switchModal(false))
       setOpen_switchModal(false)
       return
@@ -216,6 +226,8 @@ export default function UserSettings({disconnect,user}) {
   },[currentProject])
 
   useEffect(() => {
+    getStatus().then(result => setOpen_switchModal(result))
+
     if(!allProjects?.length) return 
     
     const project = allProjects.find((pr) => {
@@ -223,8 +235,6 @@ export default function UserSettings({disconnect,user}) {
     })
 
     setCurrentProject(project)
-
-    getStatus().then(result => setOpen_switchModal(result))
 
     getNoNameNFTStakedBalance(window.ethereum.selectedAddress).then(({sum}) => {
       setNftStaked(Number(sum))
@@ -260,7 +270,7 @@ export default function UserSettings({disconnect,user}) {
     get_ETH_balance().then(result => {
         setETHbalance(Number(result))})
   },[allProjects])
-
+  
   return (
     <>
     <div className={styles.modalBody}>
@@ -270,14 +280,14 @@ export default function UserSettings({disconnect,user}) {
           <div onClick={() => dispatch(toggleModalWithoutBlock('settings'))} className={styles.button}>
             <div className={styles.photo}>
               {
-                       user?.discordData?.avatar
+                       user?.twitterData?.photo
                        ?
                        <Image
                        alt='user-img'
                        width={'24'}
                        height={'24'}
-                       loader={() => `https://cdn.discordapp.com/avatars/${user.discordData.id}/${user.discordData.avatar}?size=24`}
-                       src={`https://cdn.discordapp.com/avatars/${user.discordData.id}/${user.discordData.avatar}?size=24`}
+                       loader={() => user?.twitterData?.photo}
+                       src={user?.twitterData?.photo}
                        />
                        :
                       <Image src={icons.photo} alt={'user-photo'}/>     
@@ -308,18 +318,18 @@ export default function UserSettings({disconnect,user}) {
                   <div className={styles.usernameInfo}>
                     <div className={styles.modalPhoto}>
                       {
-                       user?.discordData?.avatar
+                       user?.twitterData?.photo
                        ?
                        <Image
+                       alt='user-img'
                        width={'24'}
                        height={'24'}
-                       alt='user-img'
-                       loader={() => `https://cdn.discordapp.com/avatars/${user.discordData.id}/${user.discordData.avatar}?size=24`}
-                       src={`https://cdn.discordapp.com/avatars/${user.discordData.id}/${user.discordData.avatar}?size=24`}
+                       loader={() => user?.twitterData?.photo}
+                       src={user?.twitterData?.photo}
                        />
                        :
                       <Image src={icons.photo} alt={'user-photo'}/>     
-                      }    
+                      } 
                     </div>
                     <span className={styles.username}>
                       {
@@ -343,7 +353,7 @@ export default function UserSettings({disconnect,user}) {
           Points:
          </span>
          <span className={styles.value}>
-			    0
+			    {user?.points || 0}
          </span>
         </div>
         <div className={styles.row}>
@@ -351,7 +361,7 @@ export default function UserSettings({disconnect,user}) {
            Partners:
          </span>
          <span className={styles.value}>
-			    {NFT_partners}
+         {user?.partners || 0}
          </span>
         </div>
         <div className={styles.row}>
@@ -420,7 +430,7 @@ export default function UserSettings({disconnect,user}) {
            <button onClick={copyRef} className={styles.btn}>
               <Image alt={'copy'} src={icons.copy}/>
               <span>Copy referall link</span>
-              <input ref={refLinkInput} defaultValue={createRefLink(user._id)} className={styles.hiddenInput}/>
+              <input ref={refLinkInput} defaultValue={refLinkValue} className={styles.hiddenInput}/>
               {
                 refCoppied
                 ?

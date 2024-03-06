@@ -20,7 +20,8 @@
     background: var(--Deep-orange, #8d2a17);
   }
   &:disabled {
-    background: var(--Deep-orange, #9f321c);
+    background: #808894;
+    box-shadow: 0px 0px 0px 0px;
     cursor: not-allowed;
   }
 }
@@ -45,7 +46,8 @@
     background: var(--Deep-orange, #8d2a17);
   }
   &:disabled {
-    background: var(--Deep-orange, #9f321c);
+    background: #808894;
+    box-shadow: 0px 0px 0px 0px;
     cursor: not-allowed;
   }
 }
@@ -66,4 +68,13 @@
   &:active {
     background: var(--Deep-orange, #8d2a17);
   }
+}
+.inviteCode{
+  padding: 16px;
+}
+.actionItem{
+  padding: 8px 12px;
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 500;
 }

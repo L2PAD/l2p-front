@@ -28,6 +28,7 @@ const modalsSlice = createSlice({
         buyNft:{state:false},
         isBuyNft:{state:false},
         rwa:{state:false},
+        footerModal:{state:false}
     },
     reducers:{
         closeModal(state,action){

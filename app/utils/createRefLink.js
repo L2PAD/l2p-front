@@ -1,5 +1,5 @@
-import { url } from "../config/api"        
+import { host } from "../config/api"        
 
-export default (id) => {
-    return `${url}ref/${id}`
+export default (id,code) => {
+    return `${host}ref/${id}/${code}`
 }

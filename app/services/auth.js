@@ -2,6 +2,10 @@ import {config} from '../config/api.js'
 
 export default async (userData) => {
     try{
+        if(!userData?.address){
+            return {success:false}
+        }
+
         const responce = await fetch(config.createUrl('auth'),{
             method:'POST',
             headers:{

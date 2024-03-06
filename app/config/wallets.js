@@ -6,17 +6,5 @@ export const wallets = [
       title:"Metamask",
       config:{}
     },
-    {
-      img:icons.WalletConnect,
-      title:"Connect Wallet",  
-      config:{
-      }
-    },
-    {
-      img:icons.coinbase,
-      title:"TrustWallet",
-      config:{
-      }
-    },
 ]
   
