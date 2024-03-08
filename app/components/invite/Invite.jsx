@@ -1,7 +1,7 @@
 import {useState,useEffect,useRef} from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
-import { toggleModal } from '../../store/slices/modalsSlice'
+import { toggleModal,openModal } from '../../store/slices/modalsSlice'
 import { api } from '../../config/api'
 import getUserByAddress from '../../services/getUserStatusByAddress'
 import activateCode from '../../services/activateCode'
@@ -162,8 +162,8 @@ const Invite = () => {
         if(oldAddress && !isWalletConnected){
             getUserByAddress(oldAddress).then(({success,isActive}) => {
                 if(isActive && success){
-                    localStorage.setItem('l2pad-auth',true)
-                    dispatch(toggleModal('wallet'))
+                    localStorage.setItem('l2pad-auth','true')
+                    dispatch(openModal('wallet'))
                 }
             })
 

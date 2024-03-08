@@ -47,7 +47,7 @@ export default function useAuth() {
                     localStorage.setItem('l2pad-wallet',window?.ethereum?.selectedAddress)
                     dispatch(setUserData({...user,isAuth:isAuth}))
                     setTimeout(() => {
-                        window.location.reload()
+                        window.location.reload(true)
                     },100)
                 }
             })
