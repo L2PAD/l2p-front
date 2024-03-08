@@ -11,7 +11,6 @@ import Image from 'next/image'
 import successIcon from '../../assets/icons/success-icon.svg'
 import getUserData from '../../utils/getUserData'
 import useAuth from '../../hooks/useAuth'
-import CustomCheckbox from '../UI/inputs/CheckBox'
 import SquareBtn from '../UI/buttons/SquareLightBtn'
 import styles from '../styles/invite.module.scss'
 
@@ -53,7 +52,6 @@ const Invite = () => {
         3:'',
         4:'',
     })
-    const [isConfirm,setIsConfrim] = useState(false)
     const {adderss} = useAuth()
     const codeWrapperRef = useRef()
     const dispatch = useDispatch()
@@ -156,7 +154,6 @@ const Invite = () => {
         const isTelegramConnected = userData?.telegramData
         
         const userCode = localStorage.getItem('l2pad-code')
-
         const oldAddress = localStorage.getItem('l2pad-wallet')
         
         if(oldAddress && !isWalletConnected){
@@ -166,6 +163,17 @@ const Invite = () => {
                     dispatch(toggleModal('wallet'))
                 }
             })
+
+            if(userCode){
+                setCode({
+                    0:userCode[0],
+                    1:userCode[1],
+                    2:userCode[2],
+                    3:userCode[3],
+                    4:userCode[4],
+                })
+            }
+
             return
         }
 
@@ -290,7 +298,6 @@ const Invite = () => {
             :
             <SquareBtn
             handler={confirmSendCode}
-            disabled={!isConfirm}
             width='330'
             text={'Enter invite code'}
             fontSize='15px'
@@ -298,21 +305,6 @@ const Invite = () => {
             />
         }
 
-        {
-            isAuth 
-            ?
-            <></>
-            :
-            <div className={styles.accessTerms}>
-                <CustomCheckbox
-                handler={() => setIsConfrim((prev) => !prev)}
-                isChecked={isConfirm}
-                />
-                <div className={styles.accessTermsInfo}>
-                I have read and accept the <a href='#footer-block'>Privacy Policy</a> and <a href='#footer-block'>Terms and Conditions</a>
-                </div>
-            </div>
-        }
         <div className={styles.actions}>
             {
                 actions.map((action,index) => {

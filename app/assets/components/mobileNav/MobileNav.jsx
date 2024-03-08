@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import RwaCreditModal from '../rwaCreditNavModal/RwaCreditModal';
 import Link from 'next/link'
 import NavModal from '../navModal/NavModal';
@@ -7,6 +8,7 @@ import UserSettings from '../../../components/userSettings/UserSettings'
 import styles from './mobile.module.scss'
 
 const MobileNav = ({navModalState,rwaModalState,navModalHandler,rwaModalHandler,isAuth,walletsHandler,isVisible,modalHandler,links,user,disconnect,headerData}) => {
+    const router = useRouter()
 
     return (
         <div onClick={modalHandler} id={'modal'} className={isVisible ? styles.modal + ' ' + styles.visible : styles.modal}>
@@ -18,7 +20,7 @@ const MobileNav = ({navModalState,rwaModalState,navModalHandler,rwaModalHandler,
                         ?
                         <UserSettings disconnect={disconnect} user={user} />    
                         :
-                        <PinkBtn handler={walletsHandler} text={'Connect wallet'} />
+                        <PinkBtn handler={() => router.push('/invite')} text={'Connect wallet'} />
                     }
                 </div>
                 <li className={styles.investsBtn}>

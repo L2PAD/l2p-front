@@ -48,6 +48,18 @@ export default function Info({data}) {
         if(params.wallet){
             dispatch(toggleModal('wallet'))
         }
+
+        if(params?.activated === 'true'){
+            setIsSuccess(true)
+
+            return
+        }
+
+        if(params?.activated === 'false'){
+            setIsError(true)
+
+            return
+        }
         
         if(params?.success){
             setIsSuccess(true)
@@ -198,7 +210,7 @@ export default function Info({data}) {
     />
     <CustomAlert
     title={'Ref link activated'}
-    text={'In order to finish activated referral link buy Noname NFT'}
+    text={'Account activation was successful!'}
     handler={() => setIsSuccess(false)}
     isVisible={isSuccess}
     isAutoClose={false}

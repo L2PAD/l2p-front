@@ -118,13 +118,8 @@ const Nav = ({userData}) => {
         localStorage.setItem('l2pad-auth',false)
     }
 
-    const walletsHandler = (event) => {
-    }
-
-    const connect = async (config,wallet) => {
-        await connectWallet('Metamask',walletsHandler)
-
-        return
+    const connect = async () => {
+        await connectWallet('Metamask')
     }
 
     const modalHandler = (event) => {
@@ -257,7 +252,6 @@ const Nav = ({userData}) => {
             <Wallets 
             config={config} 
             connect={connect} 
-            handler={walletsHandler} 
             isVisible={walletState}
             />
             <Burger/>
@@ -269,7 +263,6 @@ const Nav = ({userData}) => {
             disconnect={disconnectHandler} 
             user={userData} 
             isAuth={userData.isAuth} 
-            walletsHandler={walletsHandler} 
             isVisible={modal} 
             modalHandler={modalHandler} 
             links={mobileLinks}

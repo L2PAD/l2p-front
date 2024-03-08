@@ -10,7 +10,7 @@ import { wallets } from '../../../config/wallets'
 import { closeModal ,toggleModal,toggleModalWithoutBlock} from '../../../store/slices/modalsSlice';
 import CheckBox from '../../../components/UI/inputs/CheckBox';
 
-export default function Wallets({config,isVisible,handler,connect}) {
+export default function Wallets({config,isVisible,connect}) {
   const [isConfirm,setIsConfirm] = useState(false)
   const dispatch = useDispatch()
   const bodyClass = isVisible ? styles.wlModal + " " + styles.visible : styles.wlModal
@@ -44,7 +44,9 @@ export default function Wallets({config,isVisible,handler,connect}) {
             </div>
              
              <div className={styles.close}>
-               <button onClick={handler}><Image alt={'close-modal'} src={closeSvg}/></button>
+               <button onClick={() => {
+                dispatch(closeModal('wallet'))
+               }}><Image alt={'close-modal'} src={closeSvg}/></button>
              </div>
           </div>
           <div className={styles.wallets}>

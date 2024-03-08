@@ -12,7 +12,7 @@ export default function useWallet() {
     const [loading,setLoading] = useState(false)
     const dispatch = useDispatch()
     
-    async function connectWallet (walletType,modalHandler) {
+    async function connectWallet (walletType) {
         try{
           setLoading(true)
           let providerOptions = null
@@ -50,8 +50,6 @@ export default function useWallet() {
           setTimeout(() => {
             dispatch(closeModal('wallet'))
           },100)  
-
-          modalHandler(false)
 
           setLoading(false)
         }catch(e){

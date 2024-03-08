@@ -1,5 +1,6 @@
 import {useEffect,useState} from 'react'
 import { useRouter } from 'next/router'
+import activateCode from '../../../app/services/activateCode'
 import Loader from '../../../app/assets/components/loader/Loader'
 import updateUser from '../../../app/services/updateUser'
 
@@ -8,17 +9,29 @@ export default function AuthTwitter () {
     const router = useRouter()
     const params = router.query
 
+    const activateAccount = async () => {
+        const codeValue = localStorage.getItem('l2pad-code')
+
+        const {success} = await activateCode(codeValue)
+
+        localStorage.setItem('l2pad-auth',success)
+
+        router.push(`/info?activated=${success}`)
+    }
+
     useEffect(() => {
         const telegramAuth = async () => {
             if(Object.values(router.query).length){
               const {success,user} = await updateUser({telegramData:router.query})
-              setLoading(false)
+
               if(success){
-                  router.push('/invite')
+                await activateAccount() 
               }
+
+              setLoading(false)
             }
         }
-        if(params?.name){
+        if(params?.name || params?.username){
             telegramAuth()
         }
     },[params])

@@ -81,7 +81,6 @@ export default function BuyNft({nft}) {
   }
 
   const buyByEth = async () => {
-      console.log(customOrder.orderId,customOrder.price)
       const {success} = await purchaseItem(customOrder.orderId,customOrder.price)
 
       if(success){
@@ -172,13 +171,13 @@ export default function BuyNft({nft}) {
           <div className={styles.infoHead}>
             <div className={styles.creator}>
               {
-                nft.creatorData?.discordData?.avatar
+                nft.creatorData?.twitterData?.photo
                 ?
-                <img src={`https://cdn.discordapp.com/avatars/${nft.creatorData?.discordData?.id}/${nft.creatorData?.discordData?.avatar}?size=24`}/>
+                <img src={nft.creatorData?.twitterData?.photo}/>
                 :
                 <Image src={manSvg} alt='creator img'/>
               }
-              <span>{nft.creatorData?.discordData?.username}</span>
+              <span>{nft.creatorData?.twitterData?.username || '-'}</span>
             </div>
             {
               !isBuyAccess

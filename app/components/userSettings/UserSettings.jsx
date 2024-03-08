@@ -41,6 +41,7 @@ import sliceAddress from '../../utils/sliceAddress'
 import createRefLink from '../../utils/createRefLink'
 import getUserById from '../../services/getUserById';
 import styles from '../styles/user-settings.module.scss'
+import { discordRedirectLink } from '../../config/api';
 
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -484,7 +485,7 @@ export default function UserSettings({disconnect,user}) {
         </div>
         <div className={styles.row}>
            <button 
-           onClick={() => router.push('https://discord.com/api/oauth2/authorize?client_id=1082648354053427210&redirect_uri=https%3A%2F%2Fnoname-backend-production.up.railway.app%2Fdiscord&response_type=code&scope=identify')} className={styles.btn}>
+           onClick={() => router.push(discordRedirectLink)} className={styles.btn}>
               <Image alt={'discord'} src={discordSvg}/>
               <span className={styles.blueText}>
                 {user?.discordData?.username ? user?.discordData?.username : 'Connect Discord'}

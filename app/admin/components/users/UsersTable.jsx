@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {AiOutlineDownload} from 'react-icons/ai'
+import { api } from '../../../config/api'
 import useModal from '../../../hooks/useModal'
 import Modal from '../../../assets/components/modal/Modal'
 import SquareBtn from '../../../components/UI/buttons/SquareLightBtn'
@@ -55,7 +56,7 @@ export default function UsersTable({users}) {
 
     const downloadData = async () => {
         await getUsersData()
-        router.push('https://noname-backend-production.up.railway.app/api/static/users.xlsx')
+        router.push(`${api}/api/static/users.xlsx`)
     }
 
     const filteredUsers = useMemo(() => {
@@ -69,8 +70,10 @@ export default function UsersTable({users}) {
                     return 'KYC'
                 case 'wallet':
                     return 'address'
-                case 'discord':
-                    return 'discordData'
+                case 'telegram':
+                    return 'telegramData'
+                case 'twitter':
+                    return 'twitterData'
                 default:
                     break;
             }
@@ -78,16 +81,21 @@ export default function UsersTable({users}) {
 
         return users.filter((user) => {
             const type = checkSelectValue(selectValue)
-            if(selectValue === 'discord' && !user.discordData){
+            if(selectValue === 'telegram' && !user.telegramData){
                 return false
             }
-            if(selectValue === 'discord' && user.discordData?.username){
+            if(selectValue === 'telegram' && user.telegramData?.username){
+                return user[type].username.toLowerCase().includes(filter.toLowerCase())
+            }
+            if(selectValue === 'twitter' && !user.twitterData){
+                return false
+            }
+            if(selectValue === 'twitter' && user.twitterData?.username){
                 return user[type].username.toLowerCase().includes(filter.toLowerCase())
             }
             return user[type].toLowerCase().includes(filter.toLowerCase())
         })
     },[users,filter,selectValue])
-
 
   return (
     <>
@@ -117,7 +125,8 @@ export default function UsersTable({users}) {
                     <div onClick={(e) => selectHandler(e)} className={styles.selectList}>
                         <button id='wallet'>Wallet</button>
                         <button id='email'>Email</button>
-                        <button id='discord'>Discord</button>
+                        <button id='telegram'>Telegram</button>
+                        <button id='twitter'>Twitter</button>
                     </div>
                     :
                     <></>
@@ -196,10 +205,18 @@ export default function UsersTable({users}) {
                             
                             <div className={styles.item}>
                                 <div className={styles.key}>
-                                    Discord:
+                                    Telegram:
                                 </div>
                                 <div className={styles.value}>
-                                    {user.discordData ? user.discordData.username : '-'}
+                                    {user?.telegramData ? user?.telegramData.username || user?.telegramData.name : '-'}
+                                </div>
+                            </div>
+                            <div className={styles.item}>
+                                <div className={styles.key}>
+                                    X (twitter):
+                                </div>
+                                <div className={styles.value}>
+                                    {user?.twitterData ? user.twitterData?.username || user.twitter?.name : '-'}
                                 </div>
                             </div>
                             <div className={styles.item}>
