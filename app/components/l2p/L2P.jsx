@@ -52,7 +52,7 @@ const L2P = ({socialLinks}) => {
                             ?
                             <img 
                             className={styles.userImage}
-                            src={`https://cdn.discordapp.com/avatars/${userData.discordData.id}/${userData.discordData.avatar}?size=32`}/>
+                            src={userData?.twitterData.photo}/>
                             :
                             <></>
                         }

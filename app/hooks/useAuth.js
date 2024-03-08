@@ -93,7 +93,9 @@ export default function useAuth() {
             dispatch(setUserData(userData))
         }
 
-        checkAuth()
+        setInterval(() => {
+            checkAuth()
+        },10000)
 
         setTimeout(() => {
             if(!window?.ethereum?.selectedAddress){
