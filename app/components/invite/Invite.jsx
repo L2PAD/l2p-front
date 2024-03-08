@@ -149,13 +149,16 @@ const Invite = () => {
     useEffect(() => {
         const userData = getUserData()
         
-        const isWalletConnected = window?.ethereum?.selectedAddress 
+        const isWalletConnected = !!window?.ethereum?.selectedAddress 
         const isTwitterConnected = userData?.twitterData
         const isTelegramConnected = userData?.telegramData
         
         const userCode = localStorage.getItem('l2pad-code')
         const oldAddress = localStorage.getItem('l2pad-wallet')
-        
+        console.log(`Old user code: ${userCode}`)
+        console.log(`Old user address: ${oldAddress}`)
+        console.log(`Is wallet connected: ${isWalletConnected}`)
+        console.log(`Is twitter connected: ${isTwitterConnected}`)
         if(oldAddress && !isWalletConnected){
             getUserByAddress(oldAddress).then(({success,isActive}) => {
                 if(isActive && success){
