@@ -1,16 +1,18 @@
-import {useState,useEffect,useRef} from 'react'
+import {useState,useEffect,useRef, useMemo} from 'react'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
-import { toggleModal,openModal } from '../../store/slices/modalsSlice'
+import { useDispatch,useSelector } from 'react-redux'
 import { api } from '../../config/api'
-import getUserByAddress from '../../services/getUserStatusByAddress'
+import Image from 'next/image'
+import Lottie from "lottie-react";
+import SuccessIconAnim from '../../assets/lotties-animations/success-icon.json'
+import useWallet from '../../hooks/useWallet'
+import LoaderCustom from '../../assets/components/loader/Loader'
 import activateCode from '../../services/activateCode'
 import CustomAlert from '../../assets/components/CustomAlert/CustomAlert'
 import checkAuthCode from '../../services/checkAuthCode'
-import Image from 'next/image'
 import successIcon from '../../assets/icons/success-icon.svg'
 import getUserData from '../../utils/getUserData'
-import useAuth from '../../hooks/useAuth'
+import CustomCheckbox from '../UI/inputs/CheckBox'
 import SquareBtn from '../UI/buttons/SquareLightBtn'
 import styles from '../styles/invite.module.scss'
 
@@ -39,7 +41,7 @@ const actionsInitial = [
 ]
 
 const Invite = () => {
-    const [isAuth,setIsAuth] = useState(false)
+    const [isConfirm,setIsConfirm] = useState(false)
     const [isConfirmBtnActive,setIsConfrimBtnActive] = useState(false)
     const [isValidCode,setIsValidCode] = useState(false)
     const [actions,setActions] = useState(() => actionsInitial)
@@ -52,9 +54,10 @@ const Invite = () => {
         3:'',
         4:'',
     })
-    const {adderss} = useAuth()
+    const {connectWallet,loading} = useWallet()
     const codeWrapperRef = useRef()
     const dispatch = useDispatch()
+    const userData = useSelector((state) => state.auth.userData)
     const router = useRouter()
 
     const codeInputeHandler = (value,index) => {
@@ -99,9 +102,9 @@ const Invite = () => {
         window.open(botLink)
     }
 
-    const connectDispatch = (action) => {
+    const connectDispatch = async (action) => {
         if(action === 'wallet'){
-            dispatch(toggleModal('wallet'))
+            await connectWallet('Metamask')
         }
         if(action === 'twitter'){
             openTwitterAuth()
@@ -147,38 +150,7 @@ const Invite = () => {
     }
 
     useEffect(() => {
-        const userData = getUserData()
-        
-        const isWalletConnected = !!window?.ethereum?.selectedAddress 
-        const isTwitterConnected = userData?.twitterData
-        const isTelegramConnected = userData?.telegramData
-        
         const userCode = localStorage.getItem('l2pad-code')
-        const oldAddress = localStorage.getItem('l2pad-wallet')
-        console.log(`Old user code: ${userCode}`)
-        console.log(`Old user address: ${oldAddress}`)
-        console.log(`Is wallet connected: ${isWalletConnected}`)
-        console.log(`Is twitter connected: ${isTwitterConnected}`)
-        if(oldAddress && !isWalletConnected){
-            getUserByAddress(oldAddress).then(({success,isActive}) => {
-                if(isActive && success){
-                    localStorage.setItem('l2pad-auth','true')
-                    dispatch(openModal('wallet'))
-                }
-            })
-
-            if(userCode){
-                setCode({
-                    0:userCode[0],
-                    1:userCode[1],
-                    2:userCode[2],
-                    3:userCode[3],
-                    4:userCode[4],
-                })
-            }
-
-            return
-        }
 
         if(userCode){
             setCode({
@@ -190,19 +162,33 @@ const Invite = () => {
             })
         }
    
+        const isWalletConnected = userData?.address  
+        const isTwitterConnected = userData?.twitterData
+        const isTelegramConnected = userData?.telegramData
+        console.log(userData)
         setActions([
             {...actionsInitial[0],isSuccess:isWalletConnected,isActive:isValidCode},
             {...actionsInitial[1],isSuccess:isTwitterConnected,isActive:isWalletConnected},
             {...actionsInitial[2],isSuccess:isTelegramConnected,isActive:isTwitterConnected}
         ])
-        
+
+        localStorage.setItem('l2pad-auth',isWalletConnected && isTwitterConnected && isTelegramConnected && userData?.isActive)
+
+        setIsConfrimBtnActive(isWalletConnected && isTwitterConnected && isTelegramConnected && !userData?.isActive)
+    },[userData,isValidCode])
+
+    const isAuth = useMemo(() => {
+        const isWalletConnected = userData?.address 
+        const isTwitterConnected = userData?.twitterData
+        const isTelegramConnected = userData?.telegramData
+
         const isAuthValue = isWalletConnected && isTwitterConnected && isTelegramConnected && userData?.isActive
 
-        setIsAuth(isAuthValue)
-        setIsConfrimBtnActive(isWalletConnected && isTwitterConnected && isTelegramConnected && !userData?.isActive)
-        localStorage.setItem('l2pad-auth',isAuthValue)
-    },[adderss,isValidCode])
+        return isAuthValue
+    },[userData])
     
+    if(loading) return <LoaderCustom/>
+
   return (
     <>
     <div className={styles.wrapper}>
@@ -300,6 +286,7 @@ const Invite = () => {
             <></>
             :
             <SquareBtn
+            disabled={!isConfirm}
             handler={confirmSendCode}
             width='330'
             text={'Enter invite code'}
@@ -307,7 +294,21 @@ const Invite = () => {
             className='inviteCode'
             />
         }
-
+        {
+            isAuth 
+            ?
+            <></>
+            :
+            <div className={styles.accessTerms}>
+                <CustomCheckbox
+                handler={() => setIsConfirm((prev) => !prev)}
+                isChecked={isConfirm}
+                />
+                <div className={styles.accessTermsInfo}>
+                I have read and accept the <a href='#footer-block'>Privacy Policy</a> and <a href='#footer-block'>Terms and Conditions</a>
+                </div>
+            </div>
+        }
         <div className={styles.actions}>
             {
                 actions.map((action,index) => {
@@ -336,7 +337,8 @@ const Invite = () => {
                                 action.isSuccess
                                 ?
                                 <div className={styles.successIcon}>
-                                    <Image src={successIcon} alt='success!'/>
+                                    {/* <Image src={successIcon} alt='success!'/> */}
+                                    <Lottie animationData={SuccessIconAnim}/>
                                 </div>
                                 :
                                 <SquareBtn
@@ -354,11 +356,11 @@ const Invite = () => {
         </div>
 
         <SquareBtn
-        handler={activateAccount}
+        handler={() => router.push('/info')}
         fontSize='15px'
         width='330'
         text={'Go to the L2P platform'}
-        disabled={!isConfirmBtnActive}
+        disabled={!isAuth}
         className='inviteCode'
         />
     </div>

@@ -17,7 +17,7 @@ export default function useAuth() {
 
     const changeAccount = useCallback( (data = '') => {
         try{
-            let address = window?.ethereum?.selectedAddress
+            const address = window?.ethereum?.selectedAddress
             const inviter = getInviter()
    
             balanceParse(address.toString()).then(async (balance) => {
@@ -45,10 +45,8 @@ export default function useAuth() {
 
                 if(success){
                     localStorage.setItem('l2pad-wallet',window?.ethereum?.selectedAddress)
+                    localStorage.setItem('l2pad-auth',true)
                     dispatch(setUserData({...user,isAuth:isAuth}))
-                    setTimeout(() => {
-                        window.location.reload(true)
-                    },100)
                 }
             })
         }catch(error){
@@ -92,10 +90,10 @@ export default function useAuth() {
         if(userData?.address){
             dispatch(setUserData(userData))
         }
-
-        setInterval(() => {
-            checkAuth()
-        },10000)
+        checkAuth()
+        // setInterval(() => {
+        //     checkAuth()
+        // },10000)
 
         setTimeout(() => {
             if(!window?.ethereum?.selectedAddress){

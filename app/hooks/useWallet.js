@@ -47,9 +47,9 @@ export default function useWallet() {
           const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance)
           const web3Accounts = await web3ModalProvider.listAccounts();
           
-          setTimeout(() => {
-            dispatch(closeModal('wallet'))
-          },100)  
+          // setTimeout(() => {
+          //   dispatch(closeModal('wallet'))
+          // },100)  
 
           setLoading(false)
         }catch(e){
