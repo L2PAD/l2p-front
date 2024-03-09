@@ -11,7 +11,7 @@ export default function useAuth() {
     
     const disconnectHandler = useCallback(() => {
         localStorage.removeItem('userData')
-        localStorage.removeItem('l2pad-auth')
+        localStorage.setItem('l2pad-auth',false)
         dispatch(setUserData({address:'',balance:'',isAuth:false,favourites:[]}))
     },[])
 
