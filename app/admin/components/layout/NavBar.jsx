@@ -58,6 +58,10 @@ const links = [
         name:'Academy',
         href:'/admin/academy',
     },
+    {
+        name:'Bot',
+        href:'/admin/bot',
+    },
 ]
 
 export default function NavBar() {

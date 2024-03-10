@@ -1,0 +1,22 @@
+.wrapper {
+  max-width: 600px;
+  width: 100%;
+  @media (max-width:620px) {
+    padding: 0px 15px;
+  }
+}
+.body{
+    margin: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.title {
+  margin: 20px 0 0 10px;
+  @media (max-width:620px) {
+    margin: 20px 0px 0px;
+  }
+}
+.btn{
+    margin-top: 22px;
+}

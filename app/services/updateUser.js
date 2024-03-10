@@ -3,7 +3,7 @@ import updateUserData from '../utils/updateUserData.js'
 
 export default async (data) => {
     try{
-        const address = window?.ethereum?.selectedAddress
+        const address = window?.ethereum?.selectedAddress || localStorage.getItem('l2pad-wallet')
 
         const responce = await fetch(config.createUrl(`user/${address}`),{
             method:'PUT',

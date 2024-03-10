@@ -2,16 +2,12 @@ import {useState,useEffect,useRef, useMemo} from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch,useSelector } from 'react-redux'
 import { api } from '../../config/api'
-import Image from 'next/image'
 import Lottie from "lottie-react";
 import SuccessIconAnim from '../../assets/lotties-animations/success-icon.json'
 import useWallet from '../../hooks/useWallet'
 import LoaderCustom from '../../assets/components/loader/Loader'
-import activateCode from '../../services/activateCode'
 import CustomAlert from '../../assets/components/CustomAlert/CustomAlert'
 import checkAuthCode from '../../services/checkAuthCode'
-import successIcon from '../../assets/icons/success-icon.svg'
-import getUserData from '../../utils/getUserData'
 import CustomCheckbox from '../UI/inputs/CheckBox'
 import SquareBtn from '../UI/buttons/SquareLightBtn'
 import styles from '../styles/invite.module.scss'
@@ -56,7 +52,6 @@ const Invite = () => {
     })
     const {connectWallet,loading} = useWallet()
     const codeWrapperRef = useRef()
-    const dispatch = useDispatch()
     const userData = useSelector((state) => state.auth.userData)
     const router = useRouter()
 
@@ -137,17 +132,14 @@ const Invite = () => {
         setIsCodeCheckedAlert(true)
     }
 
-    const activateAccount = async () => {
-        const {codeValue} = getCode()
+    useEffect(() => {
+        const connectedWallet = localStorage.getItem('l2pad-wallet')
+        const userData = localStorage.getItem('userData')
 
-        const {success} = await activateCode(codeValue)
-
-        if(success){
-            localStorage.setItem('l2pad-auth',true)
-
-            router.push('/info')
+        if(connectedWallet && !userData?.address){
+            connectWallet('Metamask')
         }
-    }
+    },[])
 
     useEffect(() => {
         const userCode = localStorage.getItem('l2pad-code')
@@ -165,7 +157,7 @@ const Invite = () => {
         const isWalletConnected = userData?.address  
         const isTwitterConnected = userData?.twitterData
         const isTelegramConnected = userData?.telegramData
-        console.log(userData)
+
         setActions([
             {...actionsInitial[0],isSuccess:isWalletConnected,isActive:isValidCode},
             {...actionsInitial[1],isSuccess:isTwitterConnected,isActive:isWalletConnected},

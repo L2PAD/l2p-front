@@ -206,14 +206,12 @@ export default function Info({data}) {
     text={'You can`t activate this referral link'}
     handler={() => setIsError(false)}
     isVisible={isError}
-    isAutoClose={false}
     />
     <CustomAlert
     title={'Ref link activated'}
     text={'Account activation was successful!'}
     handler={() => setIsSuccess(false)}
     isVisible={isSuccess}
-    isAutoClose={false}
     type='success'
     />
     </>
