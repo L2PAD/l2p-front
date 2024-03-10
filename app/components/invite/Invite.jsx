@@ -304,6 +304,88 @@ const Invite = () => {
         <div className={styles.actions}>
             {
                 actions.map((action,index) => {
+                    if(index === 1){
+                        return (
+                            <div 
+                            key={index}
+                            className={
+                                action.isActive
+                                ?
+                                styles.action + " " + styles.active 
+                                :
+                                styles.action
+                            }>
+                                <div className={styles.actionInfo}>
+                                    <div className={styles.actionText}>
+                                        0{index + 1}
+                                    </div>
+                                    <div className={styles.actionText + ' ' + styles.middleText}>
+                                        {action.text}
+                                    </div>
+                                    <div className={styles.actionLabel}>
+                                        <a href='https://twitter.com/L2pad_xyz' target="_blank">L2PAD on Twitter</a>
+                                    </div>
+                                </div>
+                                {
+                                    action.isSuccess
+                                    ?
+                                    <div className={styles.successIcon}>
+                                        {/* <Image src={successIcon} alt='success!'/> */}
+                                        <Lottie animationData={SuccessIconAnim}/>
+                                    </div>
+                                    :
+                                    <SquareBtn
+                                    handler={() => connectDispatch(action.handler)}
+                                    fontSize='14px'
+                                    className={'actionItem'}
+                                    disabled={!action.isActive}
+                                    text={'Connect'}
+                                    />
+                                }
+                            </div>
+                        )
+                    }
+                    if(index === 2){
+                        return (
+                            <div 
+                            key={index}
+                            className={
+                                action.isActive
+                                ?
+                                styles.action + " " + styles.active 
+                                :
+                                styles.action
+                            }>
+                                <div className={styles.actionInfo}>
+                                    <div className={styles.actionText}>
+                                        0{index + 1}
+                                    </div>
+                                    <div className={styles.actionText + ' ' + styles.middleText}>
+                                        {action.text}
+                                    </div>
+                                    <div className={styles.actionLabel}>
+                                        <a href='https://t.me/L2pad_xyz' target="_blank">L2PAD on Telegram</a>
+                                    </div>
+                                </div>
+                                {
+                                    action.isSuccess
+                                    ?
+                                    <div className={styles.successIcon}>
+                                        {/* <Image src={successIcon} alt='success!'/> */}
+                                        <Lottie animationData={SuccessIconAnim}/>
+                                    </div>
+                                    :
+                                    <SquareBtn
+                                    handler={() => connectDispatch(action.handler)}
+                                    fontSize='14px'
+                                    className={'actionItem'}
+                                    disabled={!action.isActive}
+                                    text={'Connect'}
+                                    />
+                                }
+                            </div>
+                        )
+                    }
                     return (
                         <div 
                         key={index}

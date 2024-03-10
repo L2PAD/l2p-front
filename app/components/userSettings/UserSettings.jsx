@@ -370,7 +370,13 @@ export default function UserSettings({disconnect,user}) {
          Balance:
          </span>
          <span className={styles.value}>
-         {ETHbalance}
+         {
+          user?.balance 
+          ?
+          String(user?.balance).slice(0,6)
+          :
+          0
+         }
          </span>
         </div>
         <div className={styles.row}>

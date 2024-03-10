@@ -140,6 +140,13 @@
   @media (max-width:420px) {
     font-size: 16px;
   }
+  a{
+    color: gray;
+
+    &:hover{
+      color: rgb(170, 170, 170);
+    }
+  }
 }
 .successIcon{
   margin-left: auto;
