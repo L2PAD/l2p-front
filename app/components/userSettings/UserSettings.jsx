@@ -53,7 +53,7 @@ async function getStatus() {
   try{
    const provider = new ethers.providers.Web3Provider(window.ethereum);
    const chainId = await provider.getNetwork()
-   console.log(chainId)
+
    if (chainId.chainId!=chainIdValue){
      return true
    }
@@ -169,7 +169,7 @@ export default function UserSettings({disconnect,user}) {
     }
   }
 
-  const copyRef = async (node) => {
+  const copyRef = async () => {
     const {success,code} = await getRefCode()
 
     if(!success) return
@@ -558,7 +558,7 @@ export default function UserSettings({disconnect,user}) {
     isVisible={isSuccessClaim}
     handler={() => setSuccessClaim(false)}
     />
-    <SwitchModal handler={switchModalHandler} isVisible={open_switchModal}/>
+    {/* <SwitchModal handler={switchModalHandler} isVisible={open_switchModal}/> */}
     </>
   
   )

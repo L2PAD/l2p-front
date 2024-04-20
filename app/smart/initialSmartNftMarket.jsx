@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { Contract } from "ethers";
-import {bigNumber_to_number,number_to_bigNumber,getCurrentDecimal,numberToBigNumber} from './initialSmartMain'
-import { decimals } from "../config/provider";
+import {bigNumber_to_number,number_to_bigNumber,numberToBigNumber,getCurrentDecimal} from './initialSmartMain'
+import { marketDecimals } from "../config/provider";
 import getDatesFromToday from '../utils/getDatesFromToday'
 import getDateInterval from '../utils/getDateInterval'
 
@@ -640,6 +640,26 @@ const abi_nft = [
 		"type": "function"
 	}
 ]
+
+export function getCurrentMarketDecimal(number){
+	const numberStr = String(number)
+	let multi = '1'
+	let currentDecimals = 0
+
+	if(numberStr.includes('.')){
+		for (let i = 0; i < numberStr.split('.')[1].length; i++) {
+			multi = multi + '0'
+			currentDecimals++			
+		}
+	}else{
+		return {currentDecimals:marketDecimals,currentNumber:number}
+	}
+
+	currentDecimals = marketDecimals - currentDecimals
+	const currentNumber = number * Number(multi)
+
+	return {currentNumber,currentDecimals} 
+}
 
 //////////////////////////////////Контракт основной
 const getMainSmart = () => {
@@ -1523,7 +1543,7 @@ const getUsdContract = () => {
 
 // Апрув управления средствами $ для основного смартконтракта(sum(int) - кол-во $)
 export async function approveUsd(sum) {
-	const {currentDecimals,currentNumber} = getCurrentDecimal(sum)
+	const {currentDecimals,currentNumber} = getCurrentMarketDecimal(sum)
 
 	let sum_last= numberToBigNumber(currentNumber,currentDecimals)
 	
@@ -1653,9 +1673,10 @@ export async function getItemById(item_id) {
 export async function purchaseItem(item_id,price) {  
   try {
 		const {daiContractWithSigner_pool} = getMainSmart()
-		const {currentDecimals,currentNumber} = getCurrentDecimal(price)
+		const {currentDecimals,currentNumber} = getCurrentMarketDecimal(price)
+
 		const priceValue = ethers.utils.parseUnits(String(currentNumber), currentDecimals)
-		console.log(bigNumber_to_number(priceValue,decimals))
+		console.log(bigNumber_to_number(currentNumber,currentDecimals))
     	await daiContractWithSigner_pool.purchaseItem(item_id,{ value: priceValue });
 
 		return {success:true}
@@ -1696,7 +1717,7 @@ export async function getOrderByNftId(nftId,address) {
 
 			if(orderNftId === Number(nftId) && order.token_address === address){
 				currentOrder.orderId = Number(bigNumber_to_number(order.item_id,0))
-				currentOrder.orderPrice = Number(bigNumber_to_number(order.price,decimals))
+				currentOrder.orderPrice = Number(bigNumber_to_number(order.price,marketDecimals))
 				currentOrder.timeEnd = Number(bigNumber_to_number(order.endTime,0))
 				currentOrder.orderSeller = order.seller
 				currentOrder.orderAddress = order.token_address
@@ -1811,7 +1832,7 @@ export async function getOrderUsdByNftId(nftId,address) {
 			const orderNftId = Number(bigNumber_to_number(order.token_id,0))
 			
 			currentOrder.orderId = Number(bigNumber_to_number(order.item_id,0))
-			currentOrder.orderPrice = Number(bigNumber_to_number(order.price,decimals))
+			currentOrder.orderPrice = Number(bigNumber_to_number(order.price,marketDecimals))
 			if(orderNftId === Number(nftId) && order.token_address === address){
 				currentOrder.timeEnd = Number(bigNumber_to_number(order.endTime,0))
 				currentOrder.orderSeller = order.seller
@@ -1839,9 +1860,9 @@ export async function getNFTBalance(address_nft,user) {
 	
     try {
         const sum = await contract_nft_nn.balanceOf(user);
-
+	
 		const nftsValue = sum ? Number(bigNumber_to_number(sum,0)) : 0
-
+	
 		return {success:true,nfts:nftsValue}
       } catch (err) {
         console.info('err in approve', err.message);
@@ -1981,7 +2002,7 @@ export async function getFloorPriceUsdc (collectionAddress) {
 		
 		for (let i = 0; i < availableOrders.length; i++) {
 			const order = availableOrders[i];
-			const price = Number(bigNumber_to_number(order.price,decimals))
+			const price = Number(bigNumber_to_number(order.price,marketDecimals))
 	
 			if(price < floorPrice || i === 0){
 				floorPrice = price
@@ -2006,7 +2027,7 @@ export async function getFloorPriceEth (collectionAddress) {
 		
 		for (let i = 0; i < availableOrders.length; i++) {
 			const order = availableOrders[i];
-			const price = Number(bigNumber_to_number(order.price,decimals))
+			const price = Number(bigNumber_to_number(order.price,marketDecimals))
 			
 			if(price < floorPrice || i === 0){
 				floorPrice = price
@@ -2074,7 +2095,7 @@ export const getDateIntervalPrice = async (interval,ethExchange) => {
 			
 			if(!isActual) continue
 
-			let currentPrice = Number(bigNumber_to_number(order.price,decimals))
+			let currentPrice = Number(bigNumber_to_number(order.price,marketDecimals))
 
 			actualOrders++ 
 			totalPrice = totalPrice + currentPrice
@@ -2094,7 +2115,7 @@ export const getDateIntervalPrice = async (interval,ethExchange) => {
 			const intervalNumberDate = new Date(intervalDate).getTime()
 			const isActual = intervalNumberDate < orderNumberDate
 			if(!isActual) continue
-			const currentPrice = Number(bigNumber_to_number(order.price,decimals)) * Number(ethExchange)
+			const currentPrice = Number(bigNumber_to_number(order.price,marketDecimals)) * Number(ethExchange)
 	
 			actualOrders++ 
 			totalPrice = totalPrice + currentPrice
@@ -2137,7 +2158,7 @@ export const getNftIntervalPrice = async (interval,ethExchange,nftId) => {
 				continue
 			}
 		
-			let currentPrice = Number(bigNumber_to_number(order.price,decimals))
+			let currentPrice = Number(bigNumber_to_number(order.price,marketDecimals))
 	
 			if(currentPrice > maxPrice){
 				maxPrice = Number(currentPrice.toFixed(2))
@@ -2163,7 +2184,7 @@ export const getNftIntervalPrice = async (interval,ethExchange,nftId) => {
 					continue
 				}
 
-			const currentPrice = Number(bigNumber_to_number(order.price,decimals)) * Number(ethExchange)
+			const currentPrice = Number(bigNumber_to_number(order.price,marketDecimals)) * Number(ethExchange)
 
 			if(currentPrice > maxPrice){
 				maxPrice = Number(currentPrice.toFixed(2))
@@ -2192,7 +2213,7 @@ export const getNftFloorPrice = async (collectionAddress,nftId,currency) => {
 
 		for (let i = 0; i < allOrders.length; i++) {
 			const order = allOrders[i];
-			const price = bigNumber_to_number(order.price,decimals)
+			const price = bigNumber_to_number(order.price,marketDecimals)
 			const currentNftId = Number(bigNumber_to_number(order.token_id,0))		
 			
 			if(
@@ -2225,7 +2246,7 @@ export async function getCollectionData (collectionAddress,currency,ethExchange,
 			
 			if(collectionAddress !== order.token_address || !order.Available) continue 
 
-			let price = Number(bigNumber_to_number(order.price,decimals))
+			let price = Number(bigNumber_to_number(order.price,marketDecimals))
 
 			if(price > maxPrice){
 				maxPrice = Number(price.toFixed(2))
@@ -2244,7 +2265,7 @@ export async function getCollectionData (collectionAddress,currency,ethExchange,
 
 			if(collectionAddress !== order.token_address || !order.Available) continue 
 
-			let price = Number(bigNumber_to_number(order.price,decimals)) * Number(ethExchange)
+			let price = Number(bigNumber_to_number(order.price,marketDecimals)) * Number(ethExchange)
 
 			if(price > maxPrice){
 				maxPrice = Number(price.toFixed(2))
@@ -2314,7 +2335,7 @@ export async function getTotalVolumeEth() {
 
 		const response =  await daiContractWithSigner_pool.total_volume_eth();
 		
-		const value = Number(bigNumber_to_number(response,decimals))
+		const value = Number(bigNumber_to_number(response,marketDecimals))
 
 		return {success:true,value}
 	}
@@ -2330,7 +2351,7 @@ export async function getTotalVolumeUsd() {
 
 	 	const response =  await daiContractWithSigner_pool.total_volume_usd();
 	 	
-		const value = Number(bigNumber_to_number(response,decimals))
+		const value = Number(bigNumber_to_number(response,marketDecimals))
 
 	 	return {success:true,value}
 	}
@@ -2356,7 +2377,7 @@ export async function getPriceForWeek(nftId,ethExchange){
 			const id = Number(bigNumber_to_number(order.token_id,0))
 	
 			if(isValidDate && Number(nftId) === id){
-				const price = Number(bigNumber_to_number(order.price,decimals)).toFixed(2)
+				const price = Number(bigNumber_to_number(order.price,marketDecimals)).toFixed(2)
 				uniqueDates[orderDate] = true
 				data.push({date:orderDate,'':Number(price)})
 				if(!uniqueDates[orderDate]){
@@ -2372,7 +2393,7 @@ export async function getPriceForWeek(nftId,ethExchange){
 			const id = Number(bigNumber_to_number(order.token_id,0))
 	
 			if(isValidDate && Number(nftId) === id){
-				const price = (Number(bigNumber_to_number(order.price,decimals)) * Number(ethExchange)).toFixed(2)
+				const price = (Number(bigNumber_to_number(order.price,marketDecimals)) * Number(ethExchange)).toFixed(2)
 				if(!uniqueDates[orderDate]){
 					uniqueDates[orderDate] = true
 					data.push({date:orderDate,'':Number(price)})
@@ -2413,7 +2434,7 @@ export async function getBuyNftAccess(userAddress,nftId,isEth){
 
 			if(isAvailable){
 				const orderData = {
-					price:Number(bigNumber_to_number(order.price,decimals)),
+					price:Number(bigNumber_to_number(order.price,marketDecimals)),
 					orderId:Number(bigNumber_to_number(order.item_id,0)),
 					seller:order.seller,
 					buyer:order.buyer,

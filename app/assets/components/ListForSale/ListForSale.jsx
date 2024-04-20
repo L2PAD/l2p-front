@@ -7,7 +7,7 @@ import {
     getFloorPriceUsdc,getFloorPriceEth
 } from '../../../smart/initialSmartNftMarket'
 import { bigNumber_to_number, numberToBigNumber } from '../../../smart/initialSmartMain'
-import { getCurrentDecimal } from '../../../smart/initialSmartMain'
+import { getCurrentMarketDecimal } from '../../../smart/initialSmartNftMarket'
 import getFloorPrice from '../../../services/getFloorPrice'
 import addDateAndTime from '../../../utils/addDateAndTime'
 import parseDate from '.././../../utils/parseDate'
@@ -88,7 +88,7 @@ export default function ListForSale({collections,isVisible,handler}) {
     }
 
     const approveCollectionHandler = async () => {
-        const {currentNumber,currentDecimals} = getCurrentDecimal(price)
+        const {currentNumber,currentDecimals} = getCurrentMarketDecimal(price)
 
         const timeEnd = addDateAndTime(parseDate(date),`${time.hours}:${time.minutes}`)
         const nftId = selectedNft.nftId

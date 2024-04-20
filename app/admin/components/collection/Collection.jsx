@@ -15,7 +15,7 @@ import styles from "../../styles/collection.module.scss";
 
 const types = [
     {
-        label:'Noname Key',
+        label:'L2PAD Key',
         value:'nonamekey',
     },
     {
@@ -27,7 +27,7 @@ const types = [
         value:'business'
     },
     {
-        label:'zKsync',
+        label:'Blast',
         value:'zksync'
     },
 ]

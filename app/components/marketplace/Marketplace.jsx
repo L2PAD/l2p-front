@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrency } from '../../store/slices/currencySlice'
 import { toggleModal } from '../../store/slices/modalsSlice'
+import { marketDecimals,marketChainIdValue } from '../../config/provider'
+import { ethers } from 'ethers'
+import SwitchModal from '../../assets/components/switchModal/SwitchModal'
 import CurrencyCheckbox from '../../assets/components/currencyCheckbox/CurrencyCheckbox'
 import Image from 'next/image'
 import Info from '../../assets/components/info/Info'
@@ -11,7 +14,26 @@ import ListForSale from '../../assets/components/ListForSale/ListForSale'
 import listForSaleSvg from '../../assets/icons/listForSale.svg'
 import styles from '../styles/marketplace.module.scss'
 
+async function changeNetwork(){
+    const result = await window.ethereum.request({
+      method: "wallet_addEthereumChain",
+      params: [{
+        chainId: '0x144',
+        rpcUrls: ["https://mainnet.era.zksync.io"],
+        chainName: "zkSync Era Mainnet",
+        nativeCurrency: {
+            name: "ETH",
+            symbol: "ETH",
+            decimals: marketDecimals
+        },
+        blockExplorerUrls: ["https://explorer.zksync.io/"]
+      }]
+    });
+}
+  
+
 export default function Marketplace({collectionsData}) {
+    const [openSwitchModal, setOpenSwitchModal] = useState(false)
     const [collections,setCollection] = useState(collectionsData)
     const listForSaleVisible = useSelector((state) => state.modals.listForSale.state)
     const currenyItems = useSelector((state) => state.currency.currencyArray)
@@ -41,8 +63,43 @@ export default function Marketplace({collectionsData}) {
         }
     }
 
+    const switchModalHandler= (event) => {
+        if(typeof event !== 'string' && event.target.id === 'toggle-modal'){
+          event.stopPropagation()
+          setOpenSwitchModal(false)
+          return
+        }
+    
+        if(event == 'active_switch') {
+          changeNetwork().then(result => setOpenSwitchModal(false))
+          setOpenSwitchModal(false)
+          return
+        }
+    }
+      
+    useEffect(() => {
+        async function getStatus() {
+          try{
+           const provider = new ethers.providers.Web3Provider(window.ethereum);
+           const chainId = await provider.getNetwork()
+
+           if (chainId.chainId != marketChainIdValue){
+             return true
+           }
+          } catch (err) {
+           return false
+         }
+          return false
+        }
+        getStatus().then((value) => setOpenSwitchModal(value))
+    },[])
+
   return (
     <>
+    <SwitchModal
+    network='zkSync'
+    handler={switchModalHandler} 
+    isVisible={openSwitchModal}/>
     <div className={styles.body}>
         <Info
         title={'NFT Market'}

@@ -56,7 +56,7 @@ export default function Nft({collectionIndex,toggleShowAllBtn,nft}) {
 
     const buyByEth = async () => {
         const {currentOrder} = await getOrderByNftId(nft.nftId,nft.tokenAddress)
-        console.log(currentOrder)
+ 
         const {success} = await purchaseItem(currentOrder.orderId,currentOrder.orderPrice)
     
         if(success){

@@ -7,11 +7,11 @@ const currencySlice = createSlice({
         currencyArray:[
             {
                 name:'ETH',
-                isSelected:true,
+                isSelected:false,
             },
             {
                 name:'USDC',
-                isSelected:false,
+                isSelected:true,
             },
         ]
     },
